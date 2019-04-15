@@ -20,5 +20,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.0.53" level="application_server_libraries" />
+    <orderEntry type="library" name="sqlite-jdbc-3.21.0.1" level="project" />
   </component>
 </module>
