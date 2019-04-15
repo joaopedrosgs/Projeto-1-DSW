@@ -2,7 +2,6 @@ package org.dsw.dao;
 
 import org.dsw.model.SiteVendas;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,12 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SiteVendasDAO {
-
-    protected static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:sqlite:~/.intellij/db/projeto-1-dsw.sqlite");
-    }
-
+public class SiteVendasDAO extends GenericDAO {
     public static void create(SiteVendas site) {
         String sql = "INSERT INTO SiteVendas (email, senha, url, nome, telefone) VALUES (?, ?, ?, ?, ?)";
 
@@ -56,7 +50,7 @@ public class SiteVendasDAO {
     }
 
     public static void update(SiteVendas site) {
-        String sql = "UPDATE SiteVendas SET id=?, email=?, senha=?, url=?, nome=?, telefone=?";
+        String sql = "UPDATE SiteVendas SET id=?, email=?, senha=?, url=?, nome=?, telefone=? WHERE id=?";
 
         try {
             Connection conn = SiteVendasDAO.getConnection();
@@ -68,6 +62,7 @@ public class SiteVendasDAO {
             stat.setString(4, site.getUrl());
             stat.setString(5, site.getNome());
             stat.setString(6, site.getTelefone());
+            stat.setInt(7, site.getId());
             stat.executeUpdate();
 
             stat.close();
