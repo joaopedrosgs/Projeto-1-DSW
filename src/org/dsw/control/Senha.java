@@ -1,6 +1,5 @@
 package org.dsw.control;
 
-
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class Senha {
