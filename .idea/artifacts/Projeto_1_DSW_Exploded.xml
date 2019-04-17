@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Projeto-1-DSW:Exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Projeto_1_DSW_Exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Projeto-1-DSW/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Projeto-1-DSW" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$USER_HOME$/.intellij/jars/bcrypt-0.7.0.jar" />
+          <element id="library" level="project" name="sqlite-jdbc-3.21.0.1" />
+          <element id="library" level="project" name="bcrypt-0.8.0" />
+          <element id="library" level="project" name="bytes-1.1.0" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
