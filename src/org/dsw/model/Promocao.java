@@ -24,7 +24,7 @@ public class Promocao {
 
     public Promocao(int siteId, int teatroId, String nome, double preco, int diaHorario) {
         this(siteId, teatroId, nome, preco);
-        this.diaHorario = new Date((long) 1000*diaHorario);
+        this.diaHorario = new Date((long) 1000 * diaHorario);
     }
 
     public Promocao(int id, int siteId, int teatroId, String nome, double preco, Date diaHorario) {
@@ -37,31 +37,59 @@ public class Promocao {
         this.id = id;
     }
 
-    public int getId() { return this.id; }
+    public int getId() {
+        return this.id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public int getSiteId() { return this.siteId; }
+    public int getSiteId() {
+        return this.siteId;
+    }
 
-    public void setSiteId(int siteId) { this.siteId = siteId; }
+    public void setSiteId(int siteId) {
+        this.siteId = siteId;
+    }
 
-    public int getTeatroId() { return this.teatroId; }
+    public int getTeatroId() {
+        return this.teatroId;
+    }
 
-    public void setTeatroId(int teatroId) { this.teatroId = teatroId; }
+    public void setTeatroId(int teatroId) {
+        this.teatroId = teatroId;
+    }
 
-    public String getNome() { return this.nome; }
+    public String getNome() {
+        return this.nome;
+    }
 
-    public void setNome(String nome) { this.nome = nome; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public double getPreco() { return this.preco; }
+    public double getPreco() {
+        return this.preco;
+    }
 
-    public void setPreco(double preco) { this.preco = preco; }
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
 
-    public Date getDiaHorario() { return this.diaHorario; }
+    public Date getDiaHorario() {
+        return this.diaHorario;
+    }
 
-    public int getDiaHorarioTimestamp() { return (int) this.diaHorario.getTime()/1000; }
+    public void setDiaHorario(Date diaHorario) {
+        this.diaHorario = diaHorario;
+    }
 
-    public void setDiaHorario(Date diaHorario) { this.diaHorario = diaHorario; }
+    public void setDiaHorario(int diaHorario) {
+        this.diaHorario = new Date((long) 1000 * diaHorario);
+    }
 
-    public void setDiaHorario(int diaHorario) { this.diaHorario = new Date((long) 1000*diaHorario); }
+    public int getDiaHorarioTimestamp() {
+        return (int) this.diaHorario.getTime() / 1000;
+    }
 }

@@ -1,6 +1,7 @@
 package org.dsw.dao;
 
 import org.dsw.model.Usuario;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,8 +62,8 @@ public class UsuarioDAO extends GenericDAO {
     }
 
     public static Usuario get(int id) {
-        Usuario usuario = null;
         String sql = "SELECT * FROM Usuario WHERE id=?";
+        Usuario usuario = null;
 
         try {
             Connection conn = UsuarioDAO.getConnection();
@@ -71,7 +72,7 @@ public class UsuarioDAO extends GenericDAO {
             stat.setInt(1, id);
 
             ResultSet result = stat.executeQuery();
-            if(result.next()) {
+            if (result.next()) {
                 String email = result.getString("email");
                 String senha = result.getString("senha");
                 boolean admin = result.getBoolean("admin");
@@ -99,7 +100,7 @@ public class UsuarioDAO extends GenericDAO {
             stat.setString(1, email);
 
             ResultSet result = stat.executeQuery();
-            if(result.next()) {
+            if (result.next()) {
                 int id = result.getInt("id");
                 String senha = result.getString("senha");
                 boolean admin = result.getBoolean("admin");

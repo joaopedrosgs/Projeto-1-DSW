@@ -26,19 +26,35 @@ public class Usuario {
         this.id = id;
     }
 
-    public int getId() { return this.id; }
+    public int getId() {
+        return this.id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getEmail() { return this.email; }
+    public String getEmail() {
+        return this.email;
+    }
 
-    public void setEmail(String email) { this.email = email; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getSenha() { return this.senha; }
+    public String getSenha() {
+        return this.senha;
+    }
 
-    public void setSenha(String senha) { this.senha = senha; }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-    public boolean getAdmin() { return this.admin; }
+    public boolean getAdmin() {
+        return this.admin;
+    }
 
-    public void setAdmin(boolean admin) { this.admin = admin; }
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
 }

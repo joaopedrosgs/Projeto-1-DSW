@@ -17,11 +17,11 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
 
-        if(email != null && senha != null) {
+        if (email != null && senha != null) {
             Senha senhaHash = new Senha(senha);
             Usuario usuario = UsuarioDAO.getByEmail(email);
 
-            if(usuario != null && senhaHash.compare(usuario.getSenha())) {
+            if (usuario != null && senhaHash.compare(usuario.getSenha())) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user_id", usuario.getId());
 

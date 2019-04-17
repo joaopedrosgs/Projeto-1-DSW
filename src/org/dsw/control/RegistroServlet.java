@@ -18,7 +18,7 @@ public class RegistroServlet extends HttpServlet {
             String email = request.getParameter("email");
             String senha = request.getParameter("senha");
 
-            if(email != null && senha != null){
+            if (email != null && senha != null) {
                 Senha senhaHash = new Senha(senha);
 
                 UsuarioDAO.create(new Usuario(email, senhaHash.getHash()));

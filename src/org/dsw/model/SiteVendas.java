@@ -6,14 +6,14 @@ public class SiteVendas {
     private String nome;
     private String telefone;
 
-    public SiteVendas(int id) {
-        this.id = id;
-    }
-
-    public SiteVendas(int id, String url, String nome, String telefone) {
+    public SiteVendas(String url, String nome, String telefone) {
         this.url = url;
         this.nome = nome;
         this.telefone = telefone;
+    }
+
+    public SiteVendas(int id, String url, String nome, String telefone) {
+        this(url, nome, telefone);
         this.id = id;
     }
 

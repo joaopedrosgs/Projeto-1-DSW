@@ -1,6 +1,7 @@
 package org.dsw.dao;
 
 import org.dsw.model.Promocao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -81,7 +82,7 @@ public class PromocaoDAO extends GenericDAO {
             stat.setInt(1, id);
             ResultSet result = stat.executeQuery();
 
-            if(result.next()) {
+            if (result.next()) {
                 int siteId = result.getInt("site_id");
                 int teatroId = result.getInt("teatro_id");
                 String nome = result.getString("nome");
@@ -111,7 +112,7 @@ public class PromocaoDAO extends GenericDAO {
             stat.setInt(1, siteId);
             ResultSet result = stat.executeQuery();
 
-            while(result.next()) {
+            while (result.next()) {
                 int id = result.getInt("id");
                 int teatroId = result.getInt("teatro_id");
                 String nome = result.getString("nome");
@@ -127,7 +128,7 @@ public class PromocaoDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
 
-        return  promocaoList;
+        return promocaoList;
     }
 
     public static List<Promocao> getAllFromTeatro(int teatroId) {
@@ -141,7 +142,7 @@ public class PromocaoDAO extends GenericDAO {
             stat.setInt(1, teatroId);
             ResultSet result = stat.executeQuery();
 
-            while(result.next()) {
+            while (result.next()) {
                 int id = result.getInt("id");
                 int siteId = result.getInt("site_id");
                 String nome = result.getString("nome");
@@ -157,6 +158,6 @@ public class PromocaoDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
 
-        return  promocaoList;
+        return promocaoList;
     }
 }

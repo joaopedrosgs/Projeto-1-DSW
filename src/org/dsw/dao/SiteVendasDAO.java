@@ -1,35 +1,28 @@
 package org.dsw.dao;
 
 import org.dsw.model.SiteVendas;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @SuppressWarnings("Duplicates")
 public class SiteVendasDAO extends GenericDAO {
-    public static void create(SiteVendas site) {
+    public static void create(SiteVendas site) throws SQLException {
         String sql = "INSERT INTO SiteVendas (id, url, nome, telefone) VALUES (?, ?, ?, ?)";
 
-        try {
-            Connection conn = SiteVendasDAO.getConnection();
-            PreparedStatement stat = conn.prepareStatement(sql);
+        Connection conn = SiteVendasDAO.getConnection();
+        PreparedStatement stat = conn.prepareStatement(sql);
 
-            stat.setInt(1, site.getId());
-            stat.setString(2, site.getUrl());
-            stat.setString(3, site.getNome());
-            stat.setString(4, site.getTelefone());
-            stat.executeUpdate();
+        stat.setInt(1, site.getId());
+        stat.setString(2, site.getUrl());
+        stat.setString(3, site.getNome());
+        stat.setString(4, site.getTelefone());
+        stat.executeUpdate();
 
-            stat.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        stat.close();
+        conn.close();
     }
 
     public static void delete(SiteVendas site) {
@@ -49,25 +42,21 @@ public class SiteVendasDAO extends GenericDAO {
         }
     }
 
-    public static void update(SiteVendas site) {
+    public static void update(SiteVendas site) throws SQLException {
         String sql = "UPDATE SiteVendas SET id=?, url=?, nome=?, telefone=? WHERE id=?";
 
-        try {
-            Connection conn = SiteVendasDAO.getConnection();
-            PreparedStatement stat = conn.prepareStatement(sql);
+        Connection conn = SiteVendasDAO.getConnection();
+        PreparedStatement stat = conn.prepareStatement(sql);
 
-            stat.setInt(1, site.getId());
-            stat.setString(2, site.getUrl());
-            stat.setString(3, site.getNome());
-            stat.setString(4, site.getTelefone());
-            stat.setInt(5, site.getId());
-            stat.executeUpdate();
+        stat.setInt(1, site.getId());
+        stat.setString(2, site.getUrl());
+        stat.setString(3, site.getNome());
+        stat.setString(4, site.getTelefone());
+        stat.setInt(5, site.getId());
+        stat.executeUpdate();
 
-            stat.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        stat.close();
+        conn.close();
     }
 
     public static SiteVendas get(int id) {
@@ -81,7 +70,7 @@ public class SiteVendasDAO extends GenericDAO {
             stat.setInt(1, id);
 
             ResultSet result = stat.executeQuery();
-            if(result.next()) {
+            if (result.next()) {
                 String url = result.getString("url");
                 String nome = result.getString("nome");
                 String telefone = result.getString("telefone");
@@ -108,7 +97,7 @@ public class SiteVendasDAO extends GenericDAO {
             Statement stat = conn.createStatement();
 
             ResultSet result = stat.executeQuery(sql);
-            while(result.next()) {
+            while (result.next()) {
                 int id = result.getInt("id");
                 String url = result.getString("url");
                 String nome = result.getString("nome");
