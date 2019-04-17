@@ -75,7 +75,7 @@ public class TeatroDAO extends GenericDAO {
             stat.setInt(1, id);
             ResultSet result = stat.executeQuery();
 
-            if(result.next()) {
+            if (result.next()) {
                 String cnpj = result.getString("cnpj");
                 String nome = result.getString("nome");
                 String cidade = result.getString("cidade");
@@ -101,7 +101,7 @@ public class TeatroDAO extends GenericDAO {
             Statement stat = conn.createStatement();
 
             ResultSet result = stat.executeQuery(sql);
-            while(result.next()) {
+            while (result.next()) {
                 int id = result.getInt("id");
                 String cnpj = result.getString("cnpj");
                 String nome = result.getString("nome");
@@ -128,7 +128,7 @@ public class TeatroDAO extends GenericDAO {
             PreparedStatement stat = conn.prepareStatement(sql);
 
             ResultSet result = stat.executeQuery();
-            while(result.next()) {
+            while (result.next()) {
                 int id = result.getInt("id");
                 String cnpj = result.getString("cnpj");
                 String nome = result.getString("nome");

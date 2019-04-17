@@ -14,7 +14,7 @@ public class Permissoes {
 
     public static boolean isAdminSession(HttpSession session) {
         Object user_id = session.getAttribute("user_id");
-        if(user_id != null) {
+        if (user_id != null) {
             return Permissoes.isAdminSession((int) user_id);
         }
 

@@ -21,7 +21,7 @@ public class CreateServlet extends HttpServlet {
         // TODO: Redirecionamento para os casos de erro
         HttpSession session = request.getSession();
 
-        if(Permissoes.isAdminSession(session)) {
+        if (Permissoes.isAdminSession(session)) {
             String userId = request.getParameter("user_id");
             String url = request.getParameter("url");
             String nome = request.getParameter("nome");

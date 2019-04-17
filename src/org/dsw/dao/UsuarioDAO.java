@@ -72,7 +72,7 @@ public class UsuarioDAO extends GenericDAO {
             stat.setInt(1, id);
 
             ResultSet result = stat.executeQuery();
-            if(result.next()) {
+            if (result.next()) {
                 String email = result.getString("email");
                 String senha = result.getString("senha");
                 boolean admin = result.getBoolean("admin");
@@ -100,7 +100,7 @@ public class UsuarioDAO extends GenericDAO {
             stat.setString(1, email);
 
             ResultSet result = stat.executeQuery();
-            if(result.next()) {
+            if (result.next()) {
                 int id = result.getInt("id");
                 String senha = result.getString("senha");
                 boolean admin = result.getBoolean("admin");

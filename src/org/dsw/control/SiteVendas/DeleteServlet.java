@@ -18,13 +18,13 @@ public class DeleteServlet extends HttpServlet {
         // TODO: Redirecionamento para os casos de erro
         HttpSession session = request.getSession();
 
-        if(Permissoes.isAdminSession(session)) {
+        if (Permissoes.isAdminSession(session)) {
             String userId = request.getParameter("user_id");
 
-            if(userId != null) {
+            if (userId != null) {
                 SiteVendas site = SiteVendasDAO.get(Integer.parseInt(userId));
 
-                if(site != null) {
+                if (site != null) {
                     SiteVendasDAO.delete(site);
                 }
             }

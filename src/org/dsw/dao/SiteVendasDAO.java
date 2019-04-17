@@ -70,7 +70,7 @@ public class SiteVendasDAO extends GenericDAO {
             stat.setInt(1, id);
 
             ResultSet result = stat.executeQuery();
-            if(result.next()) {
+            if (result.next()) {
                 String url = result.getString("url");
                 String nome = result.getString("nome");
                 String telefone = result.getString("telefone");
@@ -97,7 +97,7 @@ public class SiteVendasDAO extends GenericDAO {
             Statement stat = conn.createStatement();
 
             ResultSet result = stat.executeQuery(sql);
-            while(result.next()) {
+            while (result.next()) {
                 int id = result.getInt("id");
                 String url = result.getString("url");
                 String nome = result.getString("nome");

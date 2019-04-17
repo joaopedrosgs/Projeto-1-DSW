@@ -13,19 +13,35 @@ public class Teatro {
         this.cidade = cidade;
     }
 
-    public int getId() { return this.id; }
+    public int getId() {
+        return this.id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getCNPJ() { return this.cnpj; }
+    public String getCNPJ() {
+        return this.cnpj;
+    }
 
-    public void setCNPJ(String cnpj) { this.cnpj = cnpj; }
+    public void setCNPJ(String cnpj) {
+        this.cnpj = cnpj;
+    }
 
-    public String getNome() { return this.nome; }
+    public String getNome() {
+        return this.nome;
+    }
 
-    public void setNome(String nome) { this.nome = nome; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public String getCidade() { return this.cidade; }
+    public String getCidade() {
+        return this.cidade;
+    }
 
-    public void setCidade(String cidade) { this.cidade = cidade; }
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
 }

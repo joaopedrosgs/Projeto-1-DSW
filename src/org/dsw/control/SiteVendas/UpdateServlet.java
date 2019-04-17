@@ -19,16 +19,16 @@ public class UpdateServlet extends HttpServlet {
         // TODO: Redirecionamento para os casos de erro
         HttpSession session = request.getSession();
 
-        if(Permissoes.isAdminSession(session)) {
+        if (Permissoes.isAdminSession(session)) {
             String userId = request.getParameter("user_id");
             String url = request.getParameter("url");
             String nome = request.getParameter("nome");
             String telefone = request.getParameter("telefone");
 
-            if(userId != null) {
+            if (userId != null) {
                 SiteVendas site = SiteVendasDAO.get(Integer.parseInt(userId));
 
-                if(site != null) {
+                if (site != null) {
                     if (url != null)
                         site.setUrl(url);
 
