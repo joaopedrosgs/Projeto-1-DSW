@@ -87,4 +87,32 @@ public class UsuarioDAO extends GenericDAO {
 
         return usuario;
     }
+
+    public static Usuario getByEmail(String email) {
+        Usuario usuario = null;
+        String sql = "SELECT * FROM Usuario WHERE email=?";
+
+        try {
+            Connection conn = UsuarioDAO.getConnection();
+            PreparedStatement stat = conn.prepareStatement(sql);
+
+            stat.setString(1, email);
+
+            ResultSet result = stat.executeQuery();
+            if(result.next()) {
+                int id = result.getInt("id");
+                String senha = result.getString("senha");
+                boolean admin = result.getBoolean("admin");
+
+                usuario = new Usuario(id, email, senha, admin);
+            }
+
+            stat.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return usuario;
+    }
 }

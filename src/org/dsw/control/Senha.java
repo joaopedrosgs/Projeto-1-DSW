@@ -6,17 +6,17 @@ public class Senha {
     private final int hashCost = 10;
     private final BCrypt.Hasher bCrypt = BCrypt.with(BCrypt.Version.VERSION_2Y);
 
-    private String hash;
+    private String plain;
 
     public Senha(String plain) {
-        this.hash = this.bCrypt.hashToString(this.hashCost, plain.toCharArray());
+        this.plain = plain;
     }
 
     public String getHash() {
-        return this.hash;
+        return this.bCrypt.hashToString(this.hashCost, this.plain.toCharArray());
     }
 
     public boolean compare(String cmpHash) {
-        return BCrypt.verifyer().verify(cmpHash.toCharArray(), this.hash.toCharArray()).verified;
+        return BCrypt.verifyer().verify(this.plain.toCharArray(), cmpHash.toCharArray()).verified;
     }
 }
