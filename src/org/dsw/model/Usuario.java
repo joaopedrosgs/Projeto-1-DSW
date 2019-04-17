@@ -4,6 +4,7 @@ public class Usuario {
     private int id;
     private String email;
     private String senha;
+    private boolean admin;
 
     public Usuario(int id) {
         this.id = id;
@@ -12,10 +13,16 @@ public class Usuario {
     public Usuario(String email, String senha) {
         this.email = email;
         this.senha = senha;
+        this.admin = true;
     }
 
-    public Usuario(int id, String email, String senha) {
+    public Usuario(String email, String senha, boolean admin) {
         this(email, senha);
+        this.admin = admin;
+    }
+
+    public Usuario(int id, String email, String senha, boolean admin) {
+        this(email, senha, admin);
         this.id = id;
     }
 
@@ -30,4 +37,8 @@ public class Usuario {
     public String getSenha() { return this.senha; }
 
     public void setSenha(String senha) { this.senha = senha; }
+
+    public boolean getAdmin() { return this.admin; }
+
+    public void setAdmin(boolean admin) { this.admin = admin; }
 }
