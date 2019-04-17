@@ -12,24 +12,20 @@ import java.util.List;
 
 @SuppressWarnings("Duplicates")
 public class SiteVendasDAO extends GenericDAO {
-    public static void create(SiteVendas site) {
+    public static void create(SiteVendas site) throws SQLException {
         String sql = "INSERT INTO SiteVendas (id, url, nome, telefone) VALUES (?, ?, ?, ?)";
 
-        try {
-            Connection conn = SiteVendasDAO.getConnection();
-            PreparedStatement stat = conn.prepareStatement(sql);
+        Connection conn = SiteVendasDAO.getConnection();
+        PreparedStatement stat = conn.prepareStatement(sql);
 
-            stat.setInt(1, site.getId());
-            stat.setString(2, site.getUrl());
-            stat.setString(3, site.getNome());
-            stat.setString(4, site.getTelefone());
-            stat.executeUpdate();
+        stat.setInt(1, site.getId());
+        stat.setString(2, site.getUrl());
+        stat.setString(3, site.getNome());
+        stat.setString(4, site.getTelefone());
+        stat.executeUpdate();
 
-            stat.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        stat.close();
+        conn.close();
     }
 
     public static void delete(SiteVendas site) {
