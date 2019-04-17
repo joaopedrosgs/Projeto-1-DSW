@@ -13,7 +13,7 @@ public class Usuario {
     public Usuario(String email, String senha) {
         this.email = email;
         this.senha = senha;
-        this.admin = true;
+        this.admin = false;
     }
 
     public Usuario(String email, String senha, boolean admin) {

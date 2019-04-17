@@ -7,23 +7,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UsuarioDAO extends GenericDAO {
-    public static void create(Usuario usuario) {
+    public static void create(Usuario usuario) throws SQLException {
         String sql = "INSERT INTO Usuario (email, senha, admin) VALUES (?, ?, ?)";
 
-        try {
-            Connection conn = UsuarioDAO.getConnection();
-            PreparedStatement stat = conn.prepareStatement(sql);
+        Connection conn = UsuarioDAO.getConnection();
+        PreparedStatement stat = conn.prepareStatement(sql);
 
-            stat.setString(1, usuario.getEmail());
-            stat.setString(2, usuario.getSenha());
-            stat.setBoolean(3, usuario.getAdmin());
-            stat.executeUpdate();
+        stat.setString(1, usuario.getEmail());
+        stat.setString(2, usuario.getSenha());
+        stat.setBoolean(3, usuario.getAdmin());
+        stat.executeUpdate();
 
-            stat.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        stat.close();
+        conn.close();
     }
 
     public static void delete(Usuario usuario) {
