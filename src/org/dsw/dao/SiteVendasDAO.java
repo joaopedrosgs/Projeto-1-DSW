@@ -1,11 +1,8 @@
 package org.dsw.dao;
 
 import org.dsw.model.SiteVendas;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,25 +42,21 @@ public class SiteVendasDAO extends GenericDAO {
         }
     }
 
-    public static void update(SiteVendas site) {
+    public static void update(SiteVendas site) throws SQLException {
         String sql = "UPDATE SiteVendas SET id=?, url=?, nome=?, telefone=? WHERE id=?";
 
-        try {
-            Connection conn = SiteVendasDAO.getConnection();
-            PreparedStatement stat = conn.prepareStatement(sql);
+        Connection conn = SiteVendasDAO.getConnection();
+        PreparedStatement stat = conn.prepareStatement(sql);
 
-            stat.setInt(1, site.getId());
-            stat.setString(2, site.getUrl());
-            stat.setString(3, site.getNome());
-            stat.setString(4, site.getTelefone());
-            stat.setInt(5, site.getId());
-            stat.executeUpdate();
+        stat.setInt(1, site.getId());
+        stat.setString(2, site.getUrl());
+        stat.setString(3, site.getNome());
+        stat.setString(4, site.getTelefone());
+        stat.setInt(5, site.getId());
+        stat.executeUpdate();
 
-            stat.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        stat.close();
+        conn.close();
     }
 
     public static SiteVendas get(int id) {
