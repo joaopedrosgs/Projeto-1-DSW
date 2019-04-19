@@ -1,5 +1,7 @@
 package org.dsw.model;
 
+import org.dsw.dao.TeatroDAO;
+
 import java.util.Date;
 
 public class Promocao {
@@ -55,6 +57,9 @@ public class Promocao {
 
     public int getTeatroId() {
         return this.teatroId;
+    }
+    public String getTeatroName() {
+        return TeatroDAO.get(this.teatroId).getNome();
     }
 
     public void setTeatroId(int teatroId) {
