@@ -1,5 +1,6 @@
 package org.dsw.model;
 
+import org.dsw.dao.SiteVendasDAO;
 import org.dsw.dao.TeatroDAO;
 
 import java.util.Date;
@@ -53,6 +54,10 @@ public class Promocao {
 
     public void setSiteId(int siteId) {
         this.siteId = siteId;
+    }
+
+    public String getSiteName() {
+        return SiteVendasDAO.get(this.siteId).getNome();
     }
 
     public int getTeatroId() {
