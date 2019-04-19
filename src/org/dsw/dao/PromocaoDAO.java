@@ -130,7 +130,35 @@ public class PromocaoDAO extends GenericDAO {
 
         return promocaoList;
     }
+    public static List<Promocao> getAll() {
+        String sql = "SELECT * FROM Promocao";
+        List<Promocao> promocaoList = new ArrayList<>();
 
+        try {
+            Connection conn = PromocaoDAO.getConnection();
+            PreparedStatement stat = conn.prepareStatement(sql);
+
+            ResultSet result = stat.executeQuery();
+
+            while (result.next()) {
+                int id = result.getInt("id");
+                int siteId = result.getInt("site_id");
+                int teatroId = result.getInt("teatro_id");
+                String nome = result.getString("nome");
+                double preco = result.getDouble("preco");
+                int diaHorario = result.getInt("dia_horario");
+
+                promocaoList.add(new Promocao(id, siteId, teatroId, nome, preco, diaHorario));
+            }
+
+            stat.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return promocaoList;
+    }
     public static List<Promocao> getAllFromTeatro(int teatroId) {
         String sql = "SELECT * FROM Promocao WHERE teatro_id=?";
         List<Promocao> promocaoList = new ArrayList<>();

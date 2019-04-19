@@ -11,6 +11,6 @@
     <title>$Title$</title>
 </head>
 <body>
-$END$
+${promocoes[0].id}
 </body>
 </html>
