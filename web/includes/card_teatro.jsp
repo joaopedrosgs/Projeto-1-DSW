@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+<div
+    class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
     <div class="card">
         <header class="card-header">
             <p class="card-header-title">
@@ -25,7 +26,7 @@
                 <form action="<%=request.getContextPath()%>/ingressos/por-teatro" method="post">
                     <input type="text" name="escolha" value="${currentTeatro.id}" hidden>
 
-                    <button class="button is-success is-medium" type="submit">Ver Promoções</button>
+                    <button class="button is-success is-medium" type="submit">Ver Promoï¿½ï¿½es</button>
                 </form>
             </a>
 
