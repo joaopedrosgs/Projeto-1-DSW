@@ -126,6 +126,7 @@ public class TeatroDAO extends GenericDAO {
         try {
             Connection conn = TeatroDAO.getConnection();
             PreparedStatement stat = conn.prepareStatement(sql);
+            stat.setString(1, cidade);
 
             ResultSet result = stat.executeQuery();
             while (result.next()) {
