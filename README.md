@@ -17,7 +17,7 @@ preço e dia/horário.
 ## Funcionalidades necessárias
 - [X]  Operações CRUD 1 de sites de venda de ingressos (requer login de
 administrador)
-- [ ] Operações CRUD de teatros (requer login de administrador
+- [X] Operações CRUD de teatros (requer login de administrador)
 - [X] Listagem de todos os teatros em uma única página (não requer login)
 - [X] Listagem de todos os teatros por cidade (não requer login)
 - [ ] Criação de uma promoção de um teatro (requer login do teatro: via e-
