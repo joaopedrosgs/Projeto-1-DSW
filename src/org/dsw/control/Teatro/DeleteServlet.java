@@ -1,8 +1,8 @@
-package org.dsw.control.SiteVendas;
+package org.dsw.control.Teatros;
 
 import org.dsw.control.Permissoes;
-import org.dsw.dao.SiteVendasDAO;
-import org.dsw.model.SiteVendas;
+import org.dsw.dao.TeatroDAO;
+import org.dsw.model.Teatro;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,20 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "DeleteSiteVendas", urlPatterns = "/site/delete")
+@WebServlet(name = "DeleteTeatro", urlPatterns = "/teatro/delete")
 public class DeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO: Redirecionamento para os casos de erro
         HttpSession session = request.getSession();
 
         if (Permissoes.isAdminSession(session)) {
-            String userId = request.getParameter("user_id");
+            String id = request.getParameter("id");
 
-            if (userId != null) {
-                SiteVendas site = SiteVendasDAO.get(Integer.parseInt(userId));
+            if (id != null) {
+                Teatro teatro = TeatroDAO.get(Integer.parseInt(id));
 
-                if (site != null) {
-                    SiteVendasDAO.delete(site);
+                if (teatro != null) {
+                    TeatroDAO.delete(teatro);
                 }
             }
         }
