@@ -41,24 +41,22 @@ public class TeatroDAO extends GenericDAO {
         }
     }
 
-    public static void update(Teatro teatro) {
+    public static void update(Teatro teatro)  throws SQLException {
         String sql = "UPDATE Teatro SET id=?, cnpj=?, nome=?, cidade=? WHERE id=?";
 
-        try {
-            Connection conn = TeatroDAO.getConnection();
-            PreparedStatement stat = conn.prepareStatement(sql);
+        Connection conn = TeatroDAO.getConnection();
+        PreparedStatement stat = conn.prepareStatement(sql);
 
-            stat.setInt(1, teatro.getId());
-            stat.setString(2, teatro.getCNPJ());
-            stat.setString(3, teatro.getNome());
-            stat.setString(4, teatro.getCidade());
-            stat.executeUpdate();
+        stat.setInt(1, teatro.getId());
+        stat.setString(2, teatro.getCNPJ());
+        stat.setString(3, teatro.getNome());
+        stat.setString(4, teatro.getCidade());
+        stat.setInt(5, teatro.getId());
+        stat.executeUpdate();
 
-            stat.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        stat.close();
+        conn.close();
+
     }
 
     public static Teatro get(int id) {

@@ -1,8 +1,8 @@
-package org.dsw.control.SiteVendas;
+package org.dsw.control.Teatros;
 
 import org.dsw.control.Permissoes;
-import org.dsw.dao.SiteVendasDAO;
-import org.dsw.model.SiteVendas;
+import org.dsw.dao.TeatroDAO;
+import org.dsw.model.Teatro;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,33 +13,33 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "UpdateSiteVendas", urlPatterns = "/site/update")
+@WebServlet(name = "UpdateTeatro", urlPatterns = "/teatro/update")
 public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO: Redirecionamento para os casos de erro
         HttpSession session = request.getSession();
 
         if (Permissoes.isAdminSession(session)) {
-            String userId = request.getParameter("user_id");
-            String url = request.getParameter("url");
+            String id = request.getParameter("id");
+            String cnpj = request.getParameter("cnpj");
             String nome = request.getParameter("nome");
-            String telefone = request.getParameter("telefone");
+            String cidade = request.getParameter("cidade");
 
-            if (userId != null) {
-                SiteVendas site = SiteVendasDAO.get(Integer.parseInt(userId));
+            if (id != null) {
+                Teatro teatro = TeatroDAO.get(Integer.parseInt(id));
 
-                if (site != null) {
-                    if (url != null)
-                        site.setUrl(url);
+                if (teatro != null) {
+                    if (cnpj != null)
+                        teatro.setCNPJ(cnpj);
 
                     if (nome != null)
-                        site.setNome(nome);
+                        teatro.setNome(nome);
 
-                    if (telefone != null)
-                        site.setTelefone(telefone);
+                    if (cidade != null)
+                        teatro.setCidade(cidade);
 
                     try {
-                        SiteVendasDAO.update(site);
+                        TeatroDAO.update(teatro);
                     } catch (SQLException e) {
                         // Erro ao atualizar o site
                     }
