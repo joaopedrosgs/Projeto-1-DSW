@@ -15,9 +15,16 @@ public class Permissoes {
     public static boolean isAdminSession(HttpSession session) {
         Object user_id = session.getAttribute("user_id");
         if (user_id != null) {
-            return Permissoes.isAdminSession((int) user_id);
+            return  UsuarioDAO.get((int) user_id).getAdmin();
         }
 
+        return false;
+    }
+    public static boolean userExists(HttpSession session) {
+        Object user_id = session.getAttribute("user_id");
+        if (user_id != null) {
+            return UsuarioDAO.get((int) user_id) != null;
+        }
         return false;
     }
 }
