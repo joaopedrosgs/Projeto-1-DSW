@@ -12,53 +12,52 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "LoginServlet", urlPatterns = "/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "CadastroServlet", urlPatterns = "/cadastro")
+public class CadastroServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
-        HttpSession session = request.getSession();
-        request.setAttribute("failed", false);
 
+        HttpSession session = request.getSession();
         if (session.getAttribute("user_id") != null) {
             response.sendRedirect("/painel");
             return;
         }
+
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        request.setAttribute("failed", false);
 
 
         if (email == null || senha == null) {
             request.setAttribute("failed", true);
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
-            return;
+            request.getRequestDispatcher("/cadastro.jsp").forward(request, response);
 
         }
 
         Senha senhaHash = new Senha(senha);
-        Usuario usuario = UsuarioDAO.getByEmail(email);
 
-        if (usuario == null || !senhaHash.compare(usuario.getSenha())) {
+        try {
+            Usuario usuario = new Usuario(email, senhaHash.getHash(), true);
+            UsuarioDAO.create(usuario);
+            response.sendRedirect("/login");
+
+        } catch (SQLException e) {
             request.setAttribute("failed", true);
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
-            return;
+            request.getRequestDispatcher("/cadastro.jsp").forward(request, response);
 
         }
-        session.setAttribute("user_id", usuario.getId());
-        session.setAttribute("user_email", usuario.getEmail());
-        response.sendRedirect("/painel");
-
     }
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        request.setAttribute("failed", false);
-
         if (session.getAttribute("user_id") != null) {
             response.sendRedirect("/painel");
             return;
         }
 
-        request.getRequestDispatcher("/login.jsp").forward(request, response);
-
+        request.setAttribute("failed", false);
+        request.getRequestDispatcher("/cadastro.jsp").forward(request, response);
     }
+
 }

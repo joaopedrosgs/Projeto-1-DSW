@@ -69,6 +69,9 @@
                 </div>
             </div>
         </div>
+        <div style="text-align: center">
+            <a href="cadastro">Cadastrar</a>
+        </div>
     </section>
     <%@ include file="includes/footer.html" %>
 </body>
