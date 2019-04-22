@@ -7,24 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeatroDAO extends GenericDAO {
-    public static void create(Teatro teatro) {
+    public static void create(Teatro teatro) throws SQLException {
         String sql = "INSERT INTO Teatro (id, cnpj, nome, cidade) VALUES (?, ?, ?, ?)";
 
-        try {
-            Connection conn = TeatroDAO.getConnection();
-            PreparedStatement stat = conn.prepareStatement(sql);
 
-            stat.setInt(1, teatro.getId());
-            stat.setString(2, teatro.getCNPJ());
-            stat.setString(3, teatro.getNome());
-            stat.setString(4, teatro.getCidade());
-            stat.executeUpdate();
+        Connection conn = TeatroDAO.getConnection();
+        PreparedStatement stat = conn.prepareStatement(sql);
 
-            stat.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        stat.setInt(1, teatro.getId());
+        stat.setString(2, teatro.getCNPJ());
+        stat.setString(3, teatro.getNome());
+        stat.setString(4, teatro.getCidade());
+        stat.executeUpdate();
+
+        stat.close();
+        conn.close();
     }
 
     public static void delete(Teatro teatro) {

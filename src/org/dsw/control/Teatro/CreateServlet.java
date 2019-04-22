@@ -1,9 +1,9 @@
-package org.dsw.control.SiteVendas;
+package org.dsw.control.Teatros;
 
 import org.dsw.control.Permissoes;
-import org.dsw.dao.SiteVendasDAO;
+import org.dsw.dao.TeatroDAO;
 import org.dsw.dao.UsuarioDAO;
-import org.dsw.model.SiteVendas;
+import org.dsw.model.Teatro;
 import org.dsw.model.Usuario;
 
 import javax.servlet.ServletException;
@@ -15,24 +15,24 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "CreateSiteVendas", urlPatterns = "/site/create")
+@WebServlet(name = "CreateTeatro", urlPatterns = "/teatro/create")
 public class CreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO: Redirecionamento para os casos de erro
         HttpSession session = request.getSession();
 
         if (Permissoes.isAdminSession(session)) {
-            String userId = request.getParameter("user_id");
-            String url = request.getParameter("url");
+            String id = request.getParameter("id");
+            String cnpj = request.getParameter("cnpj");
             String nome = request.getParameter("nome");
-            String telefone = request.getParameter("telefone");
+            String cidade = request.getParameter("cidade");
 
-            if (userId != null && url != null && nome != null && telefone != null) {
-                Usuario usuario = UsuarioDAO.get(Integer.parseInt(userId));
+            if (id != null && cnpj != null && nome != null && cidade  != null) {
+                Usuario usuario = UsuarioDAO.get(Integer.parseInt(id));
 
                 if (usuario != null) {
                     try {
-                        SiteVendasDAO.create(new SiteVendas(Integer.parseInt(userId), url, nome, telefone));
+                        TeatroDAO.create(new Teatro(Integer.parseInt(id), cnpj, nome, cidade));
 
                         return;
                     } catch (SQLException e) {
