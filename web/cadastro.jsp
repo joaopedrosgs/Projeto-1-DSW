@@ -22,7 +22,13 @@
 
 <section class="section">
     <div class="container">
-
+        <jsp:useBean id="failed" scope="request" type="java.lang.Boolean" />
+        <c:if test="${failed == true}">
+            <div class="notification is-danger">
+                <button class="delete"></button>
+                Este email já está sendo utilizado!
+            </div>
+        </c:if>
         <div class="columns  is-centered is-vcentered">
 
             <div class="column is-narrow">

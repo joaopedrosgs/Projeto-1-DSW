@@ -17,32 +17,48 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
+        HttpSession session = request.getSession();
         request.setAttribute("failed", false);
 
-        if (email != null && senha != null) {
-            Senha senhaHash = new Senha(senha);
-            Usuario usuario = UsuarioDAO.getByEmail(email);
-
-            if (usuario != null && senhaHash.compare(usuario.getSenha())) {
-                HttpSession session = request.getSession();
-                session.setAttribute("user_id", usuario.getId());
-                session.setAttribute("user_email", usuario.getEmail());
-
-                response.sendRedirect("/painel");
-
-                return;
-            } else {
-                request.setAttribute("failed", true);
-            }
+        if (session.getAttribute("user_id") != null) {
+            response.sendRedirect("/painel");
+            return;
         }
 
-        // TODO: Redirecionar para a página de login com erros
-        request.getRequestDispatcher("/login.jsp").forward(request, response);
+
+        if (email == null || senha == null) {
+            request.setAttribute("failed", true);
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            return;
+
+        }
+
+        Senha senhaHash = new Senha(senha);
+        Usuario usuario = UsuarioDAO.getByEmail(email);
+
+        if (usuario == null || !senhaHash.compare(usuario.getSenha())) {
+            request.setAttribute("failed", true);
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            return;
+
+        }
+        session.setAttribute("user_id", usuario.getId());
+        session.setAttribute("user_email", usuario.getEmail());
+        response.sendRedirect("/painel");
+
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         request.setAttribute("failed", false);
+
+        if (session.getAttribute("user_id") != null) {
+            response.sendRedirect("/painel");
+            return;
+        }
+
         request.getRequestDispatcher("/login.jsp").forward(request, response);
+
     }
 }
