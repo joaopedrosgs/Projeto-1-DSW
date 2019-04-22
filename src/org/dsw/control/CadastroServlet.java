@@ -17,10 +17,7 @@ public class CadastroServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        if (session.getAttribute("user_id") != null) {
-            response.sendRedirect("/painel");
-            return;
-        }
+
 
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
@@ -51,10 +48,6 @@ public class CadastroServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if (session.getAttribute("user_id") != null) {
-            response.sendRedirect("/painel");
-            return;
-        }
 
         request.setAttribute("failed", false);
         request.getRequestDispatcher("/cadastro.jsp").forward(request, response);

@@ -12,15 +12,6 @@ import java.io.IOException;
 public class PainelServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-
-        if (!Permissoes.isAdminSession(session)) {
-            session.removeAttribute("user_id");
-            session.removeAttribute("user_email");
-            response.sendRedirect("/login");
-            return;
-        }
-
         request.getRequestDispatcher("/painel.jsp").forward(request, response);
 
     }

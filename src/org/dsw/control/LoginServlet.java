@@ -20,12 +20,6 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         request.setAttribute("failed", false);
 
-        if (session.getAttribute("user_id") != null) {
-            response.sendRedirect("/painel");
-            return;
-        }
-
-
         if (email == null || senha == null) {
             request.setAttribute("failed", true);
             request.getRequestDispatcher("/login.jsp").forward(request, response);
@@ -52,11 +46,6 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         request.setAttribute("failed", false);
-
-        if (session.getAttribute("user_id") != null) {
-            response.sendRedirect("/painel");
-            return;
-        }
 
         request.getRequestDispatcher("/login.jsp").forward(request, response);
 
