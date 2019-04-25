@@ -10,25 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PromocaoDAO extends GenericDAO {
-    public static void create(Promocao promocao) {
-        String sql = "INSERT INTO Promocao (site_id, teatro_id, nome, preco, dia_horario) VALUEs (?, ?, ?, ?, ?)";
+    public static void create(Promocao promocao) throws SQLException {
+        String sql = "INSERT INTO Promocao (id, site_id, teatro_id, nome, preco, dia_horario) VALUEs (?, ?, ?, ?, ?, ?)";
 
-        try {
-            Connection conn = PromocaoDAO.getConnection();
-            PreparedStatement stat = conn.prepareStatement(sql);
+        Connection conn = PromocaoDAO.getConnection();
+        PreparedStatement stat = conn.prepareStatement(sql);
 
-            stat.setInt(1, promocao.getSiteId());
-            stat.setInt(2, promocao.getTeatroId());
-            stat.setString(3, promocao.getNome());
-            stat.setDouble(4, promocao.getPreco());
-            stat.setInt(5, promocao.getDiaHorarioTimestamp());
-            stat.executeUpdate();
+        stat.setInt(1, promocao.getId());
+        stat.setInt(2, promocao.getSiteId());
+        stat.setInt(3, promocao.getTeatroId());
+        stat.setString(4, promocao.getNome());
+        stat.setDouble(5, promocao.getPreco());
+        stat.setInt(6, promocao.getDiaHorarioTimestamp());
+        stat.executeUpdate();
 
-            stat.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        stat.close();
+        conn.close();
     }
 
     public static void delete(Promocao promocao) {
