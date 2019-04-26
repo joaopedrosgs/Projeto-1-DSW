@@ -15,7 +15,7 @@
 <html>
 
 <head>
-    <%@ include file="../includes/head.html" %>
+    <%@ include file="../includes/head.jsp" %>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
                     <a href="/teatro/list" class="button is-large is-fullwidth">Teatros</a>
                 </div>
                 <div class="column has-text-centered">
-                    <i class="fas fa-8x fa-theater-masks"></i>
+                    <i class="fas fa-8x fa-globe"></i>
                     <a href="/site/list" class="button is-large is-fullwidth">Sites</a>
                 </div>
             </div>
@@ -40,7 +40,7 @@
 
 
     </section>
-    <%@ include file="../includes/footer.html" %>
+    <%@ include file="../includes/footer.jsp" %>
 
 </body>
 

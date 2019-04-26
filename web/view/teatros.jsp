@@ -5,7 +5,7 @@
 <html>
 
     <head>
-        <%@ include file="../includes/head.html" %>
+        <%@ include file="../includes/head.jsp" %>
     </head>
 
     <body>
@@ -66,7 +66,7 @@
                 </div>
             </div>
         </section>
-        <%@ include file="../includes/footer.html" %>
+        <%@ include file="../includes/footer.jsp" %>
     </body>
 
 </html>
