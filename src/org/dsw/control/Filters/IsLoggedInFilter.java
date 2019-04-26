@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "IsLoggedInFilter", urlPatterns={"/site/delete", "/site/update", "/ingresso/delete", "/ingresso/update", "/teatro/delete", "/teatro/update"})
+@WebFilter(filterName = "IsLoggedInFilter", urlPatterns={"/ingresso/por-site","/site/delete", "/site/update", "/ingresso/delete", "/ingresso/update", "/teatro/delete", "/teatro/update"})
 public class IsLoggedInFilter implements Filter {
     public void destroy() {
     }
