@@ -34,7 +34,7 @@
                 </div>
                 <div class="tags has-addons">
                     <span class="tag is-light has-text-weight-semibold">Telefone</span>
-                    <a href="${currentSite.telefone}" class="tag">${currentSite.telefone}</a>
+                    <span class="tag">${currentSite.telefone}</span>
                 </div>
 
 

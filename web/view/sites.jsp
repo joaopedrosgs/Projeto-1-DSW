@@ -25,6 +25,21 @@
         <section class="section">
             <div class="container">
                 <%@ include file="../includes/message.jsp" %>
+
+
+                <div class="field">
+                    <c:if test="${sessionScope.user_id != null}">
+
+                        <div class="control is-fullwidth">
+                            <a href="/site/update" class="button is-primary is-fullwidth"><span>Criar novo site</span> <span
+                                    class="icon is-small">
+      <i class="fas fa-plus"></i>
+    </span></a>
+                        </div>
+                    </c:if>
+
+                </div>
+
             </div>
         </section>
         <section>

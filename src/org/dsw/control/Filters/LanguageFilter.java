@@ -12,6 +12,8 @@ public class LanguageFilter implements Filter {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         HttpSession session = ((HttpServletRequest) req).getSession();
         String locale = (String) session.getAttribute("lang");
 

@@ -1,17 +1,25 @@
 package org.dsw.dao;
 
+import org.sqlite.SQLiteConfig;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class GenericDAO {
-    protected static Connection getConnection() {
-        try {
-            Class.forName("org.sqlite.JDBC");
-            return DriverManager.getConnection("jdbc:sqlite:"+System.getProperty("user.home")+"/projeto-1-dsw.sqlite");
-        } catch (ClassNotFoundException | SQLException e) {
+    static private Connection s;
 
-            throw new RuntimeException(e);
-        }
+    protected static Connection getConnection() {
+        if (s == null)
+            try {
+                SQLiteConfig config = new SQLiteConfig();
+                config.setEncoding(SQLiteConfig.Encoding.UTF8);
+                Class.forName("org.sqlite.JDBC");
+                s = DriverManager.getConnection("jdbc:sqlite:" + System.getProperty("user.home") + "/projeto-1-dsw.sqlite", config.toProperties());
+            } catch (ClassNotFoundException | SQLException e) {
+
+                throw new RuntimeException(e);
+            }
+        return s;
     }
 }

@@ -24,7 +24,7 @@ public class PromocaoDAO extends GenericDAO {
         stat.executeUpdate();
 
         stat.close();
-        conn.close();
+
     }
 
     public static void delete(Promocao promocao) {
@@ -38,7 +38,7 @@ public class PromocaoDAO extends GenericDAO {
             stat.executeUpdate();
 
             stat.close();
-            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -60,7 +60,7 @@ public class PromocaoDAO extends GenericDAO {
         stat.executeUpdate();
 
         stat.close();
-        conn.close();
+
     }
 
     public static Promocao get(int id) {
@@ -85,7 +85,7 @@ public class PromocaoDAO extends GenericDAO {
             }
 
             stat.close();
-            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -115,7 +115,7 @@ public class PromocaoDAO extends GenericDAO {
             }
 
             stat.close();
-            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -144,7 +144,7 @@ public class PromocaoDAO extends GenericDAO {
             }
 
             stat.close();
-            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -173,7 +173,7 @@ public class PromocaoDAO extends GenericDAO {
             }
 
             stat.close();
-            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -20,7 +20,7 @@ public class UsuarioDAO extends GenericDAO {
         stat.executeUpdate();
 
         stat.close();
-        conn.close();
+
     }
 
     public static void delete(Usuario usuario) {
@@ -34,7 +34,7 @@ public class UsuarioDAO extends GenericDAO {
             stat.executeUpdate();
 
             stat.close();
-            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -55,7 +55,7 @@ public class UsuarioDAO extends GenericDAO {
             stat.executeUpdate();
 
             stat.close();
-            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -81,7 +81,7 @@ public class UsuarioDAO extends GenericDAO {
             }
 
             stat.close();
-            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -109,7 +109,7 @@ public class UsuarioDAO extends GenericDAO {
             }
 
             stat.close();
-            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

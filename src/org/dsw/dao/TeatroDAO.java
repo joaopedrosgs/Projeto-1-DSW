@@ -23,7 +23,7 @@ public class TeatroDAO extends GenericDAO {
             stat.executeUpdate();
 
             stat.close();
-            conn.close();
+
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -41,7 +41,7 @@ public class TeatroDAO extends GenericDAO {
             stat.executeUpdate();
 
             stat.close();
-            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -65,7 +65,7 @@ public class TeatroDAO extends GenericDAO {
             stat.executeUpdate();
 
             stat.close();
-            conn.close();
+
         }catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -93,7 +93,7 @@ public class TeatroDAO extends GenericDAO {
             }
 
             stat.close();
-            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -120,7 +120,7 @@ public class TeatroDAO extends GenericDAO {
             }
 
             stat.close();
-            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -147,7 +147,7 @@ public class TeatroDAO extends GenericDAO {
             }
 
             stat.close();
-            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -64,12 +64,12 @@
                     </div>
                     <c:if test="${sessionScope.user_id != null}">
 
-                    <div class="control">
-                        <a href="/ingresso/update" class="button is-primary"><span>Criar nova promocao</span> <span
-                                class="icon is-small">
+                        <div class="control">
+                            <a href="/ingresso/update" class="button is-primary"><span>Criar nova promocao</span> <span
+                                    class="icon is-small">
       <i class="fas fa-plus"></i>
     </span></a>
-                    </div>
+                        </div>
                     </c:if>
 
                 </div>

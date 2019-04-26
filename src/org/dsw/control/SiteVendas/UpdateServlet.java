@@ -2,6 +2,7 @@ package org.dsw.control.SiteVendas;
 
 import org.dsw.control.Permissoes;
 import org.dsw.dao.SiteVendasDAO;
+import org.dsw.dao.TeatroDAO;
 import org.dsw.dao.UsuarioDAO;
 import org.dsw.model.SiteVendas;
 import org.dsw.model.Usuario;
@@ -18,10 +19,11 @@ import java.sql.SQLException;
 @WebServlet(name = "SiteUpdateServlet", urlPatterns = "/site/update")
 public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        int userId = -1;
+        int id = -1;
+        HttpSession session = request.getSession();
+        int user_id = (int) session.getAttribute("user_id");
         try {
-            userId = Integer.parseInt(request.getParameter("user_id"));
+            id = Integer.parseInt(request.getParameter("id"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -29,14 +31,22 @@ public class UpdateServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         String telefone = request.getParameter("telefone");
 
-        Usuario usuario = UsuarioDAO.get(userId);
 
-        if (usuario == null) {
-            response.sendRedirect("/site/list?msg=Usuario invalido");
+        if (id == -1) {
+            id = user_id;
+        }
+        if (id != user_id && !Permissoes.isAdminSession(session)) {
+            response.sendRedirect("/site/list?msg=Id invalido");
+            return;
         }
 
+        SiteVendas site = new SiteVendas(id, url, nome, telefone);
         try {
-            SiteVendasDAO.update(new SiteVendas(userId, url, nome, telefone));
+            if(SiteVendasDAO.get(id)==null) {
+                SiteVendasDAO.create(site);
+            } else {
+                SiteVendasDAO.update(site);
+            }
             response.sendRedirect("/site/list?msg=Acao bem sucedida");
 
         } catch (SQLException e) {
@@ -50,6 +60,7 @@ public class UpdateServlet extends HttpServlet {
         int id = -1;
 
         if (id_string == null || id_string.isEmpty()) {
+            request.getRequestDispatcher("/view/alterar_site.jsp").forward(request, response);
             return;
         }
 
@@ -60,11 +71,11 @@ public class UpdateServlet extends HttpServlet {
         }
 
         SiteVendas site = SiteVendasDAO.get(id);
-        if(site != null) {
+        if (site != null) {
             request.setAttribute("site", site);
         }
 
-        request.getRequestDispatcher("/view/alterar_promocao.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/alterar_site.jsp").forward(request, response);
     }
 }
 
