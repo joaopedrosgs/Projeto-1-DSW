@@ -22,6 +22,8 @@
     <%@ include file="../includes/navbar.jsp" %>
     <section class="section">
         <div class="container">
+            <%@ include file="../includes/message.jsp" %>
+
             <div class="columns">
                 <div class="column has-text-centered">
                     <i class="fas fa-8x fa-ticket-alt"></i>

@@ -21,7 +21,8 @@ public class NotLoggedInFilter implements Filter {
         HttpSession session = request.getSession();
 
         if (session.getAttribute("user_id") != null) {
-            response.sendRedirect("/");
+            response.sendRedirect("/?msg=Voce ja esta logado");
+
             return;
         }
 

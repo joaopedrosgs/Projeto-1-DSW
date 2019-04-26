@@ -22,7 +22,8 @@ public class IsLoggedInFilter implements Filter {
         if (!Permissoes.userExists(session)) {
             session.removeAttribute("user_id");
             session.removeAttribute("user_email");
-            response.sendRedirect("/usuario/login");
+            session.removeAttribute("is_admin");
+            response.sendRedirect("/usuario/login?msg=Voce precisa estar logado para realizar essa acao");
             return;
         }
         chain.doFilter(req, resp);

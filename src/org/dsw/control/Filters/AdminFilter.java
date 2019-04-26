@@ -24,7 +24,7 @@ public class AdminFilter implements Filter {
             session.removeAttribute("user_email");
             session.removeAttribute("is_admin");
 
-            response.sendRedirect("/login");
+            response.sendRedirect("/?msg=Voce precisa ser admin para realizar essa acao");
             return;
         }
         chain.doFilter(req, resp);
