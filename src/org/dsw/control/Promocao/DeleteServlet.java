@@ -12,22 +12,26 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "DeletePromocao", urlPatterns = "/promocao/delete")
+@WebServlet(name = "PromocaoDeleteServlet", urlPatterns = "/ingresso/delete")
 public class DeleteServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO: Redirecionamento para os casos de erro
-        HttpSession session = request.getSession();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id");
 
-        if(Permissoes.isAdminSession(session)) {
-            String id = request.getParameter("id");
+        if (id == null) {
+            response.sendRedirect("/ingresso/list?msg=ID invalido");
+            return;
 
-            if(id != null) {
-                Promocao promocao = PromocaoDAO.get(Integer.parseInt(id));
-
-                if(promocao != null) {
-                    PromocaoDAO.delete(promocao);
-                }
-            }
         }
+
+        Promocao promocao = PromocaoDAO.get(Integer.parseInt(id));
+        if (promocao == null) {
+            response.sendRedirect("/ingresso/list?msg=Id invalido");
+            return;
+        }
+
+        PromocaoDAO.delete(promocao);
+        response.sendRedirect("/ingresso/list?msg=Deletado com Sucesso");
+
     }
+
 }

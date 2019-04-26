@@ -15,28 +15,32 @@
 <html>
 
 <head>
-    <%@ include file="includes/head.html" %>
+    <%@ include file="../includes/head.html" %>
 </head>
 
 <body>
-    <%@ include file="includes/navbar.jsp" %>
+    <%@ include file="../includes/navbar.jsp" %>
     <section class="section">
         <div class="container">
             <div class="columns">
                 <div class="column has-text-centered">
                     <i class="fas fa-8x fa-ticket-alt"></i>
-                    <a href="ingressos" class="button is-large is-fullwidth">Ingressos</a>
+                    <a href="/ingresso/list" class="button is-large is-fullwidth">Ingressos</a>
                 </div>
                 <div class="column has-text-centered">
                     <i class="fas fa-8x fa-theater-masks"></i>
-                    <a href="teatros" class="button is-large is-fullwidth">Teatros</a>
+                    <a href="/teatro/list" class="button is-large is-fullwidth">Teatros</a>
+                </div>
+                <div class="column has-text-centered">
+                    <i class="fas fa-8x fa-theater-masks"></i>
+                    <a href="/site/list" class="button is-large is-fullwidth">Sites</a>
                 </div>
             </div>
         </div>
 
 
     </section>
-    <%@ include file="includes/footer.html" %>
+    <%@ include file="../includes/footer.html" %>
 
 </body>
 

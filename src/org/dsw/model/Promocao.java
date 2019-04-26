@@ -57,14 +57,23 @@ public class Promocao {
     }
 
     public String getSiteName() {
-        return SiteVendasDAO.get(this.siteId).getNome();
+        SiteVendas site=  SiteVendasDAO.get(this.teatroId);
+        if(site==null) {
+            return "Sem nome";
+        }
+        return site.getNome();
     }
 
     public int getTeatroId() {
         return this.teatroId;
     }
+
     public String getTeatroName() {
-        return TeatroDAO.get(this.teatroId).getNome();
+        Teatro teatro = TeatroDAO.get(this.teatroId);
+        if(teatro==null) {
+            return "Sem nome";
+        }
+        return teatro.getNome();
     }
 
     public void setTeatroId(int teatroId) {

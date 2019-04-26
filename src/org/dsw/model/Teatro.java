@@ -13,6 +13,7 @@ public class Teatro {
         this.cidade = cidade;
     }
 
+
     public int getId() {
         return this.id;
     }

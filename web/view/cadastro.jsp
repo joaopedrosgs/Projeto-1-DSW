@@ -5,11 +5,11 @@
 <html>
 
 <head>
-    <%@ include file="includes/head.html" %>
+    <%@ include file="../includes/head.html" %>
 </head>
 
 <body>
-<%@ include file="includes/navbar.jsp" %>
+<%@ include file="../includes/navbar.jsp" %>
 <section class="hero is-primary">
     <!-- Hero content: will be in the middle -->
     <div class=" hero-body">
@@ -22,17 +22,12 @@
 
 <section class="section">
     <div class="container">
-        <jsp:useBean id="failed" scope="request" type="java.lang.Boolean" />
-        <c:if test="${failed == true}">
-            <div class="notification is-danger">
-                <button class="delete"></button>
-                Este email já está sendo utilizado!
-            </div>
-        </c:if>
+        <%@ include file="../includes/message.jsp" %>
+
         <div class="columns  is-centered is-vcentered">
 
             <div class="column is-narrow">
-                <form method="post" action="/cadastro">
+                <form method="post" action="/usuario/create">
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
                             <label class="label">Usuário</label>
@@ -69,7 +64,7 @@
         </div>
     </div>
 </section>
-<%@ include file="includes/footer.html" %>
+<%@ include file="../includes/footer.html" %>
 </body>
 
 </html>

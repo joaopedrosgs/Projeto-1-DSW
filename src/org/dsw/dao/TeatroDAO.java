@@ -1,5 +1,6 @@
 package org.dsw.dao;
 
+import org.dsw.model.Promocao;
 import org.dsw.model.Teatro;
 
 import java.sql.*;
@@ -12,16 +13,21 @@ public class TeatroDAO extends GenericDAO {
 
 
         Connection conn = TeatroDAO.getConnection();
-        PreparedStatement stat = conn.prepareStatement(sql);
+        try {
+            PreparedStatement stat = conn.prepareStatement(sql);
 
-        stat.setInt(1, teatro.getId());
-        stat.setString(2, teatro.getCNPJ());
-        stat.setString(3, teatro.getNome());
-        stat.setString(4, teatro.getCidade());
-        stat.executeUpdate();
+            stat.setInt(1, teatro.getId());
+            stat.setString(2, teatro.getCNPJ());
+            stat.setString(3, teatro.getNome());
+            stat.setString(4, teatro.getCidade());
+            stat.executeUpdate();
 
-        stat.close();
-        conn.close();
+            stat.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     public static void delete(Teatro teatro) {
@@ -39,23 +45,31 @@ public class TeatroDAO extends GenericDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        List<Promocao> promocoes = PromocaoDAO.getAllFromTeatro(teatro.getId());
+        for (Promocao promocao:promocoes) {
+            PromocaoDAO.delete(promocao);
+        }
     }
 
     public static void update(Teatro teatro)  throws SQLException {
-        String sql = "UPDATE Teatro SET id=?, cnpj=?, nome=?, cidade=? WHERE id=?";
+        String sql = "UPDATE Teatro SET cnpj=?, nome=?, cidade=? WHERE id=?";
 
         Connection conn = TeatroDAO.getConnection();
-        PreparedStatement stat = conn.prepareStatement(sql);
+        try {
+            PreparedStatement stat = conn.prepareStatement(sql);
 
-        stat.setInt(1, teatro.getId());
-        stat.setString(2, teatro.getCNPJ());
-        stat.setString(3, teatro.getNome());
-        stat.setString(4, teatro.getCidade());
-        stat.setInt(5, teatro.getId());
-        stat.executeUpdate();
+            stat.setString(1, teatro.getCNPJ());
+            stat.setString(2, teatro.getNome());
+            stat.setString(3, teatro.getCidade());
+            stat.setInt(4, teatro.getId());
+            stat.executeUpdate();
 
-        stat.close();
-        conn.close();
+            stat.close();
+            conn.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
 
     }
 

@@ -1,3 +1,5 @@
+package org.dsw.control.Promocao;
+
 import org.dsw.dao.PromocaoDAO;
 import org.dsw.dao.SiteVendasDAO;
 import org.dsw.model.Promocao;
@@ -13,9 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "PorSiteServlet", urlPatterns = "/ingressos/por-site")
+@WebServlet(name = "IngressosPorSiteListServlet", urlPatterns = "/ingresso/por-site")
 @WebInitParam(name = "escolha", value = "Todos")
-public class PorSiteServlet extends HttpServlet {
+public class ListPorSiteServlet extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,7 +30,7 @@ public class PorSiteServlet extends HttpServlet {
         request.setAttribute("promocoes", promocoes);
         request.setAttribute("por", "site");
 
-        request.getRequestDispatcher("/ingressos.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/ingressos.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,6 +56,6 @@ public class PorSiteServlet extends HttpServlet {
         request.setAttribute("promocoes", promocoes);
         request.setAttribute("por", "site");
 
-        request.getRequestDispatcher("/ingressos.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/ingressos.jsp").forward(request, response);
     }
 }

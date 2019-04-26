@@ -1,5 +1,6 @@
 package org.dsw.dao;
 
+import org.dsw.model.Promocao;
 import org.dsw.model.SiteVendas;
 
 import java.sql.*;
@@ -39,6 +40,10 @@ public class SiteVendasDAO extends GenericDAO {
             conn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+        List<Promocao> promocoes = PromocaoDAO.getAllFromSite(site.getId());
+        for (Promocao promocao:promocoes) {
+            PromocaoDAO.delete(promocao);
         }
     }
 

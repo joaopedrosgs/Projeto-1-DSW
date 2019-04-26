@@ -1,3 +1,5 @@
+package org.dsw.control.Teatro;
+
 import org.dsw.dao.PromocaoDAO;
 import org.dsw.dao.TeatroDAO;
 import org.dsw.model.Promocao;
@@ -13,9 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "TeatrosServlet", urlPatterns="/teatros")
+@WebServlet(name = "TeatroListServlet", urlPatterns="/teatro/list")
 @WebInitParam(name="cidade", value = "Todos")
-public class TeatrosServlet extends HttpServlet {
+public class ListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         List<Teatro> teatros = TeatroDAO.getAll();
@@ -23,7 +25,7 @@ public class TeatrosServlet extends HttpServlet {
         teatros.forEach(teatro -> {cidades.add(teatro.getCidade());});
         request.setAttribute("cidades", cidades);
         request.setAttribute("teatros", teatros);
-        request.getRequestDispatcher("/teatros.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/teatros.jsp").forward(request, response);
 
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,6 +41,6 @@ public class TeatrosServlet extends HttpServlet {
         request.setAttribute("teatros", teatros);
         request.setAttribute("cidades", cidades);
 
-        request.getRequestDispatcher("/teatros.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/teatros.jsp").forward(request, response);
     }
 }

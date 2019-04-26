@@ -1,5 +1,6 @@
-package org.dsw.control;
+package org.dsw.control.Usuario;
 
+import org.dsw.control.Senha;
 import org.dsw.dao.UsuarioDAO;
 import org.dsw.model.Usuario;
 
@@ -12,21 +13,16 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "CadastroServlet", urlPatterns = "/cadastro")
+@WebServlet(name = "UsuarioCadastroServlet", urlPatterns = "/usuario/create")
 public class CadastroServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-
-
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
-        request.setAttribute("failed", false);
-
 
         if (email == null || senha == null) {
-            request.setAttribute("failed", true);
-            request.getRequestDispatcher("/cadastro.jsp").forward(request, response);
+            response.sendRedirect("/usuario/create?msg=Usuario ou senha vazios");
+            return;
 
         }
 
@@ -35,11 +31,10 @@ public class CadastroServlet extends HttpServlet {
         try {
             Usuario usuario = new Usuario(email, senhaHash.getHash(), true);
             UsuarioDAO.create(usuario);
-            response.sendRedirect("/login");
+            response.sendRedirect("/");
 
         } catch (SQLException e) {
-            request.setAttribute("failed", true);
-            request.getRequestDispatcher("/cadastro.jsp").forward(request, response);
+            response.sendRedirect("/usuario/create?msg=Falha interna ao criar o usuario");
 
         }
     }
@@ -47,10 +42,7 @@ public class CadastroServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-
-        request.setAttribute("failed", false);
-        request.getRequestDispatcher("/cadastro.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/cadastro.jsp").forward(request, response);
     }
 
 }

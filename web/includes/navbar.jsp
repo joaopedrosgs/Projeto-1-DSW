@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <section>
     <nav class="navbar  is-primary " role="navigation" aria-label="main navigation">
         <div class="container">
@@ -22,7 +23,7 @@
                             Inicio
                         </span>
                     </a>
-                    <a class="navbar-item" href="/ingressos">
+                    <a class="navbar-item" href="/ingresso/list">
                         <span class="icon">
                             <i class="fas fa-ticket-alt"></i>
                         </span>
@@ -30,7 +31,7 @@
                             Ingressos
                         </span>
                     </a>
-                    <a class="navbar-item" href="/teatros">
+                    <a class="navbar-item" href="/teatro/list">
                         <span class="icon">
                             <i class="fas fa-theater-masks"></i>
                         </span>
@@ -40,7 +41,7 @@
                     </a>
                     <c:choose>
                         <c:when test="${sessionScope.user_id == null}">
-                            <a class="navbar-item" href="/login">
+                            <a class="navbar-item" href="/usuario/login">
                                 <span class="icon">
                                     <i class="fas fa-sign-in-alt"></i>
                                 </span>
@@ -50,21 +51,13 @@
                             </a>
                         </c:when>
                         <c:when test="${sessionScope.user_id != null}">
-                            <a class="navbar-item" href="/painel">
-                                <span class="icon">
-                                    <i class="fas fa-sign-in-alt"></i>
-                                </span>
-                                <span>
-                                    Painel
-                                </span>
-                            </a>
                             <span class="navbar-item">
                                 <div class="tags has-addons">
                                     <span class="tag">
                                         <c:out value="${sessionScope.user_email}" />
                                     </span>
-                                    <span class="tag is-info"> <i class="fas fa-user"></i>
-                                    </span>
+                                    <a href="/teatro/show" class="tag is-info">Meu teatro
+                                    </a>
                                 </div>
 
                             </span>

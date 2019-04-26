@@ -2,7 +2,10 @@ package org.dsw.control.Promocao;
 
 import org.dsw.control.Permissoes;
 import org.dsw.dao.PromocaoDAO;
+import org.dsw.dao.SiteVendasDAO;
+import org.dsw.dao.TeatroDAO;
 import org.dsw.model.Promocao;
+import org.dsw.model.SiteVendas;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,57 +15,82 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 
-@WebServlet(name = "UpdatePromocao", urlPatterns = "/promocao/update")
+@WebServlet(name = "PromocaoUpdateServlet", urlPatterns = "/ingresso/update")
 public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO: Redirecionamento para os casos de erro
-        HttpSession session = request.getSession();
+        int id = -1;
+        int teatro_id;
+        int site_id;
+        float preco;
+        Date dia_horario;
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+            teatro_id = Integer.parseInt(request.getParameter("teatro_id"));
+            site_id = Integer.parseInt(request.getParameter("site_id"));
+            preco = Float.parseFloat(request.getParameter("preco"));
+            String dia = request.getParameter("dia");
+            dia_horario = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").parse(dia);
 
-        if (Permissoes.isAdminSession(session)) {
-            String id = request.getParameter("id");
-            String site_id = request.getParameter("site_id");
-            String teatro_id = request.getParameter("teatro_id");
-            String nome = request.getParameter("nome");
-            String preco = request.getParameter("preco");
-            String dia_horario = request.getParameter("dia_horario");
+        } catch (Exception e) {
+            response.sendRedirect("/ingresso/list?msg=Parametros invalidos");
+            return;
 
-            if(id != null) {
-                Promocao promocao = PromocaoDAO.get(Integer.parseInt(id));
-
-                if(site_id != null) {
-                    promocao.setSiteId(Integer.parseInt(site_id));
-                }
-
-                if(teatro_id != null) {
-                    promocao.setTeatroId(Integer.parseInt(teatro_id));
-                }
-
-                if(nome != null) {
-                    promocao.setNome(nome);
-                }
-
-                if(preco != null) {
-                    promocao.setPreco(Double.parseDouble(preco));
-                }
-
-                if(dia_horario != null) {
-                    try {
-                        promocao.setDiaHorario(new SimpleDateFormat("dd/MM/yyyy").parse(dia_horario));
-                    }
-                    catch (ParseException e) {
-                        // TODO : retornar erro no formato de string
-                    }
-                }
-
-                try {
-                    PromocaoDAO.update(promocao);
-                } catch (SQLException e) {
-                    // Erro ao atualizar o site
-                }
-            }
         }
+        String nome = request.getParameter("nome");
+        Promocao promocao = new Promocao(id, site_id, teatro_id, nome, preco, dia_horario);
+        try {
+            if(id==-1) {
+                PromocaoDAO.create(promocao);
+            }else {
+                PromocaoDAO.update(promocao);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendRedirect("/ingresso/list?msg=Erro interno ao adicionar no banco de dados, talvez por conflito de horario");
+            return;
+        }
+
+        response.sendRedirect("/ingresso/list?msg=Acao bem sucedida");
+
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id_string = request.getParameter("id");
+        int id = -1;
+
+        request.setAttribute("sites", SiteVendasDAO.getAll());
+        request.setAttribute("teatros", TeatroDAO.getAll());
+
+        if (id_string == null || id_string.isEmpty()) {
+            request.getRequestDispatcher("/view/alterar_promocao.jsp").forward(request, response);
+            return;
+        }
+
+        try {
+            id = Integer.parseInt(id_string);
+        } catch (Exception e) {
+            request.getRequestDispatcher("/view/alterar_promocao.jsp").forward(request, response);
+            e.printStackTrace();
+            return;
+        }
+
+        Promocao promocao = PromocaoDAO.get(id);
+        if (promocao != null) {
+            request.setAttribute("promocao", promocao);
+        }
+
+
+
+        request.getRequestDispatcher("/view/alterar_promocao.jsp").forward(request, response);
     }
 }

@@ -1,4 +1,4 @@
-package org.dsw.control;
+package org.dsw.control.Filters;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

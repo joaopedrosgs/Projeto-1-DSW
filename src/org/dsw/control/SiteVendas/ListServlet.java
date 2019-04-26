@@ -1,18 +1,15 @@
-import org.dsw.control.Permissoes;
+package org.dsw.control.SiteVendas;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "PainelServlet", urlPatterns = "/painel")
-public class PainelServlet extends HttpServlet {
-
+@WebServlet(name = "SiteListDeVendas", urlPatterns = {"/site/list"})
+public class ListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/painel.jsp").forward(request, response);
-
+        // TODO: Decidir como apresentar os dados
     }
 }

@@ -1,3 +1,5 @@
+package org.dsw.control.Filters;
+
 import org.dsw.control.Permissoes;
 
 import javax.servlet.*;
@@ -7,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "NotLoggedInFilter", urlPatterns = {"/login", "/cadastro"})
+@WebFilter(filterName = "NotLoggedInFilter", urlPatterns = {"/usuario/login", "/usuario/create"})
 public class NotLoggedInFilter implements Filter {
     public void destroy() {
     }
@@ -19,7 +21,7 @@ public class NotLoggedInFilter implements Filter {
         HttpSession session = request.getSession();
 
         if (session.getAttribute("user_id") != null) {
-            response.sendRedirect("/painel");
+            response.sendRedirect("/");
             return;
         }
 

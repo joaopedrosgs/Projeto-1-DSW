@@ -1,3 +1,5 @@
+package org.dsw.control.Promocao;
+
 import org.dsw.dao.PromocaoDAO;
 import org.dsw.dao.TeatroDAO;
 import org.dsw.model.Promocao;
@@ -13,10 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "PorTeatroServlet", urlPatterns = {"/ingressos", "/ingressos/por-teatro"})
+@WebServlet(name = "IngressosPorTeatroListServlet", urlPatterns = {"/ingresso/list", "/ingresso/por-teatro"})
 @WebInitParam(name = "escolha", value = "Todas")
-
-public class PorTeatroServlet extends HttpServlet {
+public class ListPorTeatroServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Promocao> promocoes = PromocaoDAO.getAll();
         List<Teatro> teatros = TeatroDAO.getAll();
@@ -24,7 +25,7 @@ public class PorTeatroServlet extends HttpServlet {
         request.setAttribute("promocoes", promocoes);
         request.setAttribute("por", "teatro");
 
-        request.getRequestDispatcher("/ingressos.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/ingressos.jsp").forward(request, response);
 
     }
 
@@ -34,12 +35,10 @@ public class PorTeatroServlet extends HttpServlet {
         List<Teatro> teatros = TeatroDAO.getAll();
 
         int teatro_id_int=-1;
-        if (!teatro_id.isEmpty()) {
+        if (teatro_id != null && !teatro_id.isEmpty()) {
             try {
                 teatro_id_int = Integer.parseInt(teatro_id);
                 promocoes = PromocaoDAO.getAllFromTeatro(teatro_id_int);
-
-
 
             } catch (NumberFormatException nfe) {
                 //TODO
@@ -54,6 +53,6 @@ public class PorTeatroServlet extends HttpServlet {
         request.setAttribute("promocoes", promocoes);
         request.setAttribute("por", "teatro");
 
-        request.getRequestDispatcher("/ingressos.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/ingressos.jsp").forward(request, response);
     }
 }

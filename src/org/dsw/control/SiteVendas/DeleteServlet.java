@@ -12,22 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "DeleteSiteVendas", urlPatterns = "/site/delete")
+@WebServlet(name = "SiteDeleteServlet", urlPatterns = "/site/delete")
 public class DeleteServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO: Redirecionamento para os casos de erro
-        HttpSession session = request.getSession();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if (Permissoes.isAdminSession(session)) {
-            String userId = request.getParameter("user_id");
-
-            if (userId != null) {
-                SiteVendas site = SiteVendasDAO.get(Integer.parseInt(userId));
-
-                if (site != null) {
-                    SiteVendasDAO.delete(site);
-                }
-            }
+        int userId = Integer.parseInt(request.getParameter("user_id"));
+        SiteVendas site = SiteVendasDAO.get(userId);
+        if (site == null) {
+            response.sendRedirect("/site/list?msg=Voce nao possui um site");
         }
+
+        SiteVendasDAO.delete(site);
+        response.sendRedirect("/site/list");
+
+
     }
+
 }

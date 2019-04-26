@@ -1,3 +1,5 @@
+package org.dsw.control.Filters;
+
 import org.dsw.control.Permissoes;
 
 import javax.servlet.*;
@@ -7,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "IsLoggedInFilter", urlPatterns={"/painel"})
+@WebFilter(filterName = "IsLoggedInFilter", urlPatterns={"/site/delete", "/site/update", "/ingresso/delete", "/ingresso/update", "/teatro/delete", "/teatro/update"})
 public class IsLoggedInFilter implements Filter {
     public void destroy() {
     }
@@ -20,7 +22,7 @@ public class IsLoggedInFilter implements Filter {
         if (!Permissoes.userExists(session)) {
             session.removeAttribute("user_id");
             session.removeAttribute("user_email");
-            response.sendRedirect("/login");
+            response.sendRedirect("/usuario/login");
             return;
         }
         chain.doFilter(req, resp);
