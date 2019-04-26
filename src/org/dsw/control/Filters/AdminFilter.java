@@ -22,6 +22,8 @@ public class AdminFilter implements Filter {
         if (!Permissoes.isAdminSession(session)) {
             session.removeAttribute("user_id");
             session.removeAttribute("user_email");
+            session.removeAttribute("is_admin");
+
             response.sendRedirect("/login");
             return;
         }

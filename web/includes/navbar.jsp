@@ -69,6 +69,14 @@
                                 </div>
 
                             </span>
+                            <a class="navbar-item" href="/usuario/logout">
+                                <span class="icon">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </span>
+                                <span>
+                                    Logout
+                                </span>
+                            </a>
                         </c:when>
                     </c:choose>
 
