@@ -39,6 +39,8 @@
                             Teatros
                         </span>
                     </a>
+                    <c:if test="${sessionScope.is_admin != null && sessionScope.is_admin == true}">
+
                     <a class="navbar-item" href="/site/list">
                         <span class="icon">
                             <i class="fas fa-globe"></i>
@@ -47,6 +49,7 @@
                             Sites
                         </span>
                     </a>
+                    </c:if>
                     <c:choose>
                         <c:when test="${sessionScope.user_id == null}">
                             <a class="navbar-item" href="/usuario/login">
