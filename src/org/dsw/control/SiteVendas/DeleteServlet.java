@@ -15,12 +15,23 @@ import java.io.IOException;
 @WebServlet(name = "SiteDeleteServlet", urlPatterns = "/site/delete")
 public class DeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        int userId = Integer.parseInt(request.getParameter("user_id"));
-        SiteVendas site = SiteVendasDAO.get(userId);
-        if (site == null) {
-            response.sendRedirect("/site/list?msg=Voce nao possui um site");
+        int id=-1;
+        HttpSession session = request.getSession();
+        int user_id= (int) session.getAttribute("user_id");
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (Exception e) {
+          e.printStackTrace();
         }
+
+        SiteVendas site = SiteVendasDAO.get(id);
+        if ((id != user_id && !Permissoes.isAdminSession(session)) || site == null) {
+            response.sendRedirect("/site/list?msg=Parametros ou permissão invalida");
+            return;
+
+        }
+
+
 
         SiteVendasDAO.delete(site);
         response.sendRedirect("/site/list");

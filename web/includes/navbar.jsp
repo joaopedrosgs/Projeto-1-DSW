@@ -39,6 +39,14 @@
                             Teatros
                         </span>
                     </a>
+                    <a class="navbar-item" href="/site/list">
+                        <span class="icon">
+                            <i class="fas fa-globe"></i>
+                        </span>
+                        <span>
+                            Sites
+                        </span>
+                    </a>
                     <c:choose>
                         <c:when test="${sessionScope.user_id == null}">
                             <a class="navbar-item" href="/usuario/login">

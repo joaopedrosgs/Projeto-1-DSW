@@ -6,28 +6,35 @@ import org.dsw.model.Promocao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet(name = "PromocaoDeleteServlet", urlPatterns = "/ingresso/delete")
 public class DeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
+        HttpSession session = request.getSession();
+        int user_id = (int) session.getAttribute("user_id");
+        int id=-1;
 
-        if (id == null) {
-            response.sendRedirect("/ingresso/list?msg=ID invalido");
-            return;
-
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        }catch (Exception e) {
+            response.sendRedirect("/ingresso/list?msg=Id invalido");
+            e.printStackTrace();
         }
 
-        Promocao promocao = PromocaoDAO.get(Integer.parseInt(id));
+
+        Promocao promocao = PromocaoDAO.get(id);
         if (promocao == null) {
             response.sendRedirect("/ingresso/list?msg=Id invalido");
             return;
         }
+        if ((promocao.getTeatroId() != user_id && !Permissoes.isAdminSession(session)) || promocao == null) {
+            response.sendRedirect("/ingresso/list?msg=Parametros ou permissão invalida");
+            return;
+
+        }
+
 
         PromocaoDAO.delete(promocao);
         response.sendRedirect("/ingresso/list?msg=Deletado com Sucesso");
