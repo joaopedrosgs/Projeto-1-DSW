@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 
@@ -15,15 +15,18 @@
             <div class=" hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title">
-                        Criar/Alterar teatro</h1>
+                        <fmt:message key="alterar_site.criar_alterar_teatro"/>
+                    </h1>
                 </div>
             </div>
         </section>
         <section class="section">
             <div class="container">
                 <%@ include file="../includes/message.jsp" %>
-            </div>
 
+                </div>
+
+            </div>
         </section>
         <section class="section">
             <div class="container">
@@ -33,26 +36,28 @@
                     <input class="input" name="id" type="hidden"
                            value="<c:out value="${teatro.id}">-1</c:out>"/>
 
-                           <div class="field is-horizontal">
-                               <div class="field-label is-normal">
-                                   <label class="label">Nome</label>
-                               </div>
-                               <div class="field-body">
-                                   <div class="field">
-                                       <p class="control is-expanded has-icons-left">
-                                           <input class="input" name="nome" type="text"
-                                                  placeholder="Nome"
-                                                  value="<c:out value="${site.nome}"/>">
-                                       <span class="icon is-small is-left">
-                                           <i class="fas fa-user"></i>
-                                       </span>
-                                   </p>
-                               </div>
-                           </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">
+                                <fmt:message key="alterar_site.nome"/>
+                            </label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded has-icons-left">
+                                    <input class="input" name="nome" type="text"
+                                           placeholder="Nome"
+                                           value="<c:out value="${site.nome}"/>">
+                                    <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
-                            <label class="label">URL</label>
+                            <label class="label"><fmt:message key="alterar_site.url"/></label>
                         </div>
                         <div class="field-body">
                             <div class="field">
@@ -60,15 +65,17 @@
                                     <input class="input" name="url" type="text" value="<c:out value="${site.url}"/>"
                                            placeholder="www.example.com">
                                     <span class="icon is-small is-left">
-                                        <i class="fas fa-user"></i>
-                                    </span>
+                                    <i class="fas fa-user"></i>
+                                </span>
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
-                            <label class="label">Telefone</label>
+                            <label class="label">
+                                <fmt:message key="alterar_site.telefone"/>
+                            </label>
                         </div>
                         <div class="field-body">
                             <div class="field">
@@ -77,13 +84,15 @@
                                            value="<c:out value="${site.telefone}"/>"
                                            placeholder="1111-1111">
                                     <span class="icon is-small is-left">
-                                        <i class="fas fa-globe"></i>
-                                    </span>
+                                    <i class="fas fa-globe"></i>
+                                </span>
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="button is-primary is-fullwidth ">Enviar</button>
+                    <button type="submit" class="button is-primary is-fullwidth ">
+                        <fmt:message key="alterar_site.enviar"/>
+                    </button>
                 </form>
             </div>
         </section>

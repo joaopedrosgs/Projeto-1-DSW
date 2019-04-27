@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 
@@ -15,7 +15,8 @@
             <div class=" hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title">
-                        Criar/Alterar promocao</h1>
+                        <fmt:message key="alterar_promocao.criar_alterar_promocao"/>
+                    </h1>
                 </div>
             </div>
         </section>
@@ -30,7 +31,9 @@
 
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
-                            <label class="label">Nome</label>
+                            <label class="label">
+                                <fmt:message key="alterar_promocao.nome"/>
+                            </label>
                         </div>
                         <div class="field-body">
                             <div class="field">
@@ -46,7 +49,9 @@
                     </div>
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
-                            <label class="label">Preco</label>
+                            <label class="label">
+                                <fmt:message key="alterar_promocao.preco"/>
+                            </label>
                         </div>
                         <div class="field-body">
                             <div class="field">
@@ -60,7 +65,9 @@
                     </div>
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
-                            <label class="label">Dia</label>
+                            <label class="label">
+                                <fmt:message key="alterar_promocao.dia"/>
+                            </label>
                         </div>
                         <div class="field-body">
                             <div class="field">
@@ -73,13 +80,17 @@
 
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
-                            <label class="label">Teatro</label>
+                            <label class="label">
+                                <fmt:message key="alterar_promocao.teatro"/>
+                            </label>
                         </div>
                         <div class="field-body">
                             <div class="select">
                                 <select name='teatro_id'>
                                     <jsp:useBean id="teatros" scope="request" type="java.util.List" />
-                                    <option value="" disabled selected>Selecione um teatro</option>
+                                    <option value="" disabled selected>
+                                        <fmt:message key="alterar_promocao.selecione_teatro"/>
+                                    </option>
                                     <c:forEach var="teatro" items="${teatros}">
                                         <option value="${teatro.id}">${teatro.nome}</option>
                                     </c:forEach>
@@ -89,13 +100,17 @@
                     </div>
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
-                            <label class="label">Site</label>
+                            <label class="label">
+                                <fmt:message key="alterar_promocao.site"/>
+                            </label>
                         </div>
                         <div class="field-body">
                             <div class="select">
                                 <select name='site_id'>
                                     <jsp:useBean id="sites" scope="request" type="java.util.List" />
-                                    <option value="" disabled selected>Selecione um site</option>
+                                    <option value="" disabled selected>
+                                        <fmt:message key="alterar_promocao.selecione_site"/>
+                                    </option>
                                     <c:forEach var="site" items="${sites}">
                                         <option value="${site.id}">${site.nome}</option>
                                     </c:forEach>
@@ -104,7 +119,9 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="button is-primary is-fullwidth ">Enviar</button>
+                    <button type="submit" class="button is-primary is-fullwidth ">
+                        <fmt:message key="alterar_promocao.enviar"/>
+                    </button>
                 </form>
             </div>
         </section>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <html>
@@ -15,10 +16,10 @@
             <div class=" hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title">
-                        Promoções
+                        <fmt:message key="ingressos.promocoes"/>
                     </h1>
                     <h2 class="subtitle">
-                        Ingressos
+                        <fmt:message key="ingressos.ingressos"/>
                     </h2>
 
                 </div>
@@ -31,10 +32,16 @@
                     <div class="container">
                         <ul>
                             <jsp:useBean id="por" scope="request" type="java.lang.String"/>
-                            <li class="${por==" teatro" ? 'is-active' : '' }"><a
-                                    href="/ingresso/por-teatro">Por teatro</a></li>
-                            <li class="${por==" site" ? 'is-active' : '' }"><a
-                                    href="/ingresso/por-site">Por site</a></li>
+                            <li class="${por==" teatro" ? 'is-active' : '' }">
+                                <a href="/ingresso/por-teatro">
+                                    <fmt:message key="ingressos.por_teatro"/>
+                                </a>
+                            </li>
+                            <li class="${por==" site" ? 'is-active' : '' }">
+                                <a href="/ingresso/por-site">
+                                    <fmt:message key="ingressos.por_site"/>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -52,8 +59,12 @@
                                 <select class="select is-fullwidth" name='escolha'
                                         onchange='if(this.value != 0) { this.form.submit(); }'>
                                     <jsp:useBean id="escolhas" scope="request" type="java.util.List"/>
-                                    <option value="" disabled selected>Selecione um ${por}</option>
-                                    <option value="Todas">Todos</option>
+                                    <option value="" disabled selected>
+                                        <fmt:message key="ingressos.selecione_uma"/>
+                                    </option>
+                                    <option value="Todas">
+                                        <fmt:message key="ingressos.todos"/>
+                                    </option>
 
                                     <c:forEach var="escolha" items="${escolhas}">
                                         <option value="${escolha.id}">${escolha.nome}</option>
@@ -65,10 +76,12 @@
                     <c:if test="${sessionScope.user_id != null}">
 
                         <div class="control">
-                            <a href="/ingresso/update" class="button is-primary"><span>Criar nova promocao</span> <span
-                                    class="icon is-small">
-      <i class="fas fa-plus"></i>
-    </span></a>
+                            <a href="/ingresso/update" class="button is-primary">
+                                <span><fmt:message key="ingressos.criar_nova_promocao"/></span>
+                                <span class="icon is-small">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                            </a>
                         </div>
                     </c:if>
 

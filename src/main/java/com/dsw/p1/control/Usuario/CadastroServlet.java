@@ -15,6 +15,7 @@ import com.dsw.p1.model.Usuario;
 
 @WebServlet(name = "UsuarioCadastroServlet", urlPatterns = "/usuario/create")
 public class CadastroServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String email = request.getParameter("email");
@@ -36,11 +37,9 @@ public class CadastroServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect("/usuario/create?msg=Falha interna ao criar o usuario");
-            
 
         }
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

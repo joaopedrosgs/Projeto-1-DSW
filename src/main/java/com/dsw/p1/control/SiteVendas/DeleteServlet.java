@@ -14,14 +14,15 @@ import java.io.IOException;
 
 @WebServlet(name = "SiteDeleteServlet", urlPatterns = "/site/delete")
 public class DeleteServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id=-1;
+        int id = -1;
         HttpSession session = request.getSession();
-        int user_id= (Integer) session.getAttribute("user_id");
+        int user_id = (Integer) session.getAttribute("user_id");
         try {
             id = Integer.parseInt(request.getParameter("id"));
         } catch (Exception e) {
-          e.printStackTrace();
+            e.printStackTrace();
         }
 
         SiteVendas site = SiteVendasDAO.get(id);
@@ -31,11 +32,8 @@ public class DeleteServlet extends HttpServlet {
 
         }
 
-
-
         SiteVendasDAO.delete(site);
         response.sendRedirect("/site/list");
-
 
     }
 

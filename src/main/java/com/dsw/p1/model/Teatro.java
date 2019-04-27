@@ -1,6 +1,7 @@
 package com.dsw.p1.model;
 
 public class Teatro {
+
     private int id;
     private String cnpj;
     private String nome;
@@ -12,7 +13,6 @@ public class Teatro {
         this.nome = nome;
         this.cidade = cidade;
     }
-
 
     public int getId() {
         return this.id;

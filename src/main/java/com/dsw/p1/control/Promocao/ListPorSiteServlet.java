@@ -19,7 +19,6 @@ import java.util.List;
 @WebInitParam(name = "escolha", value = "Todos")
 public class ListPorSiteServlet extends HttpServlet {
 
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Promocao> promocoes;
         List<SiteVendas> sites = SiteVendasDAO.getAll();
@@ -37,7 +36,6 @@ public class ListPorSiteServlet extends HttpServlet {
         List<Promocao> promocoes = null;
         String siteIdString = request.getParameter("escolha");
         List<SiteVendas> sites = SiteVendasDAO.getAll();
-
 
         int siteId = -1;
         if (!siteIdString.isEmpty()) {

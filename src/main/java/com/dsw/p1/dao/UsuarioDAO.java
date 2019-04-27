@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UsuarioDAO extends GenericDAO {
+
     public static void create(Usuario usuario) throws SQLException {
         String sql = "INSERT INTO Usuario (email, senha, admin) VALUES (?, ?, ?)";
 

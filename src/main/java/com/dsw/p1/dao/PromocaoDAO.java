@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PromocaoDAO extends GenericDAO {
+
     public static void create(Promocao promocao) throws SQLException {
         String sql = "INSERT INTO Promocao (site_id, teatro_id, nome, preco, dia_horario) VALUEs (?, ?, ?, ?, ?)";
 
@@ -122,6 +123,7 @@ public class PromocaoDAO extends GenericDAO {
 
         return promocaoList;
     }
+
     public static List<Promocao> getAll() {
         String sql = "SELECT * FROM Promocao";
         List<Promocao> promocaoList = new ArrayList<>();
@@ -151,6 +153,7 @@ public class PromocaoDAO extends GenericDAO {
 
         return promocaoList;
     }
+
     public static List<Promocao> getAllFromTeatro(int teatroId) {
         String sql = "SELECT * FROM Promocao WHERE teatro_id=?";
         List<Promocao> promocaoList = new ArrayList<>();

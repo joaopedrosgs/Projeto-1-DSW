@@ -7,10 +7,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class GenericDAO {
+
     static private Connection s;
 
     protected static Connection getConnection() {
-        if (s == null)
+        if (s == null) {
             try {
                 SQLiteConfig config = new SQLiteConfig();
                 config.setEncoding(SQLiteConfig.Encoding.UTF8);
@@ -20,6 +21,7 @@ public class GenericDAO {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
+        }
         return s;
     }
 }

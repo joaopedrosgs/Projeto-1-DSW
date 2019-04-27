@@ -23,6 +23,7 @@ import java.util.Locale;
 
 @WebServlet(name = "PromocaoUpdateServlet", urlPatterns = "/ingresso/update")
 public class UpdateServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = -1;
         int teatro_id;
@@ -45,9 +46,9 @@ public class UpdateServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         Promocao promocao = new Promocao(id, site_id, teatro_id, nome, preco, dia_horario);
         try {
-            if(id==-1) {
+            if (id == -1) {
                 PromocaoDAO.create(promocao);
-            }else {
+            } else {
                 PromocaoDAO.update(promocao);
             }
 
@@ -86,8 +87,6 @@ public class UpdateServlet extends HttpServlet {
         if (promocao != null) {
             request.setAttribute("promocao", promocao);
         }
-
-
 
         request.getRequestDispatcher("/view/alterar_promocao.jsp").forward(request, response);
     }

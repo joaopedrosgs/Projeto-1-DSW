@@ -6,6 +6,7 @@ import com.dsw.p1.dao.TeatroDAO;
 import java.util.Date;
 
 public class Promocao {
+
     private int id;
     private int siteId;
     private int teatroId;
@@ -57,8 +58,8 @@ public class Promocao {
     }
 
     public String getSiteName() {
-        SiteVendas site=  SiteVendasDAO.get(this.teatroId);
-        if(site==null) {
+        SiteVendas site = SiteVendasDAO.get(this.teatroId);
+        if (site == null) {
             return "Sem nome";
         }
         return site.getNome();
@@ -70,7 +71,7 @@ public class Promocao {
 
     public String getTeatroName() {
         Teatro teatro = TeatroDAO.get(this.teatroId);
-        if(teatro==null) {
+        if (teatro == null) {
             return "Sem nome";
         }
         return teatro.getNome();

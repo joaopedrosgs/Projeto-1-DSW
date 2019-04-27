@@ -1,6 +1,7 @@
 package com.dsw.p1.model;
 
 public class SiteVendas {
+
     private int id;
     private String url;
     private String nome;

@@ -18,6 +18,7 @@ import java.util.List;
 @WebServlet(name = "IngressosPorTeatroListServlet", urlPatterns = {"/ingresso/list", "/ingresso/por-teatro"})
 @WebInitParam(name = "escolha", value = "Todas")
 public class ListPorTeatroServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Promocao> promocoes = PromocaoDAO.getAll();
         List<Teatro> teatros = TeatroDAO.getAll();
@@ -34,7 +35,7 @@ public class ListPorTeatroServlet extends HttpServlet {
         String teatro_id = request.getParameter("escolha");
         List<Teatro> teatros = TeatroDAO.getAll();
 
-        int teatro_id_int=-1;
+        int teatro_id_int = -1;
         if (teatro_id != null && !teatro_id.isEmpty()) {
             try {
                 teatro_id_int = Integer.parseInt(teatro_id);
@@ -44,7 +45,7 @@ public class ListPorTeatroServlet extends HttpServlet {
                 //TODO
             }
         }
-        if(teatro_id_int == -1) {
+        if (teatro_id_int == -1) {
             promocoes = PromocaoDAO.getAll();
 
         }

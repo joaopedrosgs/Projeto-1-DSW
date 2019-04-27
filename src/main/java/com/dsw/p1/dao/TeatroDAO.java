@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeatroDAO extends GenericDAO {
+
     public static void create(Teatro teatro) throws SQLException {
         String sql = "INSERT INTO Teatro (id, cnpj, nome, cidade) VALUES (?, ?, ?, ?)";
-
 
         Connection conn = TeatroDAO.getConnection();
         try {
@@ -46,12 +46,12 @@ public class TeatroDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
         List<Promocao> promocoes = PromocaoDAO.getAllFromTeatro(teatro.getId());
-        for (Promocao promocao:promocoes) {
+        for (Promocao promocao : promocoes) {
             PromocaoDAO.delete(promocao);
         }
     }
 
-    public static void update(Teatro teatro)  throws SQLException {
+    public static void update(Teatro teatro) throws SQLException {
         String sql = "UPDATE Teatro SET cnpj=?, nome=?, cidade=? WHERE id=?";
 
         Connection conn = TeatroDAO.getConnection();
@@ -66,7 +66,7 @@ public class TeatroDAO extends GenericDAO {
 
             stat.close();
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             throw e;
         }

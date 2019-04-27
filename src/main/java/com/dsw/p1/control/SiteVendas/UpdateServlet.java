@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 
 @WebServlet(name = "SiteUpdateServlet", urlPatterns = "/site/update")
 public class UpdateServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = -1;
         HttpSession session = request.getSession();
@@ -33,7 +34,6 @@ public class UpdateServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         String telefone = request.getParameter("telefone");
 
-
         if (id == -1) {
             id = user_id;
         }
@@ -44,7 +44,7 @@ public class UpdateServlet extends HttpServlet {
 
         SiteVendas site = new SiteVendas(id, url, nome, telefone);
         try {
-            if(SiteVendasDAO.get(id)==null) {
+            if (SiteVendasDAO.get(id) == null) {
                 SiteVendasDAO.create(site);
             } else {
                 SiteVendasDAO.update(site);
@@ -82,4 +82,3 @@ public class UpdateServlet extends HttpServlet {
         request.getRequestDispatcher("/view/alterar_site.jsp").forward(request, response);
     }
 }
-

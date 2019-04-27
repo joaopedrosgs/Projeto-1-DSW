@@ -19,6 +19,7 @@ import java.sql.SQLException;
 
 @WebServlet(name = "TeatroUpdateServlet", urlPatterns = "/teatro/update")
 public class UpdateServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = -1;
         String cnpj, nome, cidade;
@@ -36,8 +37,8 @@ public class UpdateServlet extends HttpServlet {
             e.printStackTrace();
             return;
         }
-        if(id==-1) {
-         id=user_id;
+        if (id == -1) {
+            id = user_id;
         }
         if (id != user_id && !Permissoes.isAdminSession(session)) {
             response.sendRedirect("/teatro/list?msg=Id invalido");
@@ -45,15 +46,14 @@ public class UpdateServlet extends HttpServlet {
         }
 
         try {
-            Teatro teatro = new Teatro(id,cnpj, nome, cidade);
-            if(TeatroDAO.get(id)==null) {
+            Teatro teatro = new Teatro(id, cnpj, nome, cidade);
+            if (TeatroDAO.get(id) == null) {
                 TeatroDAO.create(teatro);
             } else {
                 TeatroDAO.update(teatro);
             }
 
             response.sendRedirect("/teatro/list?msg=Acao bem sucedida");
-
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,7 +69,6 @@ public class UpdateServlet extends HttpServlet {
         int id = -1;
         int user_id = (int) session.getAttribute("user_id");
 
-
         if (id_string == null || id_string.isEmpty()) {
             request.getRequestDispatcher("/view/alterar_teatro.jsp").forward(request, response);
             return;
@@ -81,7 +80,7 @@ public class UpdateServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        Teatro teatro =TeatroDAO.get(id);
+        Teatro teatro = TeatroDAO.get(id);
         if ((id == user_id || Permissoes.isAdminSession(session)) && teatro != null) {
             request.setAttribute("teatro", teatro);
         }

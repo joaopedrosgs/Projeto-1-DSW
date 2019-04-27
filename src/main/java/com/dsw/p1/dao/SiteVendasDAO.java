@@ -7,9 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @SuppressWarnings("Duplicates")
 public class SiteVendasDAO extends GenericDAO {
+
     public static void create(SiteVendas site) throws SQLException {
         String sql = "INSERT INTO SiteVendas (id, url, nome, telefone) VALUES(?, ?, ?, ?)";
 
@@ -45,7 +45,7 @@ public class SiteVendasDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
         List<Promocao> promocoes = PromocaoDAO.getAllFromSite(site.getId());
-        for (Promocao promocao:promocoes) {
+        for (Promocao promocao : promocoes) {
             PromocaoDAO.delete(promocao);
         }
     }

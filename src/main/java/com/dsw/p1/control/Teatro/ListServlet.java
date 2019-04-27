@@ -15,26 +15,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "TeatroListServlet", urlPatterns="/teatro/list")
-@WebInitParam(name="cidade", value = "Todos")
+@WebServlet(name = "TeatroListServlet", urlPatterns = "/teatro/list")
+@WebInitParam(name = "cidade", value = "Todos")
 public class ListServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         List<Teatro> teatros = TeatroDAO.getAll();
         List<String> cidades = new ArrayList<>();
-        teatros.forEach(teatro -> {cidades.add(teatro.getCidade());});
+        teatros.forEach(teatro -> {
+            cidades.add(teatro.getCidade());
+        });
         request.setAttribute("cidades", cidades);
         request.setAttribute("teatros", teatros);
         request.getRequestDispatcher("/view/teatros.jsp").forward(request, response);
 
     }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Teatro> teatros = TeatroDAO.getAll();
         String cidade = request.getParameter("cidade");
         List<String> cidades = new ArrayList<>();
 
-        teatros.forEach(teatro -> {cidades.add(teatro.getCidade());});
-        if(!cidade.isEmpty() && !cidade.equals("Todas")) {
+        teatros.forEach(teatro -> {
+            cidades.add(teatro.getCidade());
+        });
+        if (!cidade.isEmpty() && !cidade.equals("Todas")) {
             teatros = TeatroDAO.getAllFromCidade(cidade);
         }
 

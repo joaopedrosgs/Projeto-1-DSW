@@ -1,9 +1,9 @@
 package com.dsw.p1.control;
 
-
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class Senha {
+
     private final int hashCost = 10;
     private final BCrypt.Hasher bCrypt = BCrypt.with(BCrypt.Version.VERSION_2Y);
 

@@ -16,17 +16,18 @@ import java.sql.SQLException;
 
 @WebServlet(name = "UsuarioLogoutServlet", urlPatterns = "/usuario/logout")
 public class LogoutServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-            session.removeAttribute("user_id");
-            session.removeAttribute("user_email");
+        session.removeAttribute("user_id");
+        session.removeAttribute("user_email");
         session.removeAttribute("is_admin");
 
         response.sendRedirect("/");
 
-
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -36,8 +37,6 @@ public class LogoutServlet extends HttpServlet {
 
         response.sendRedirect("/");
 
-
     }
-
 
 }

@@ -11,18 +11,18 @@ import java.io.IOException;
 
 @WebServlet(name = "PromocaoDeleteServlet", urlPatterns = "/ingresso/delete")
 public class DeleteServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         int user_id = (Integer) session.getAttribute("user_id");
-        int id=-1;
+        int id = -1;
 
         try {
             id = Integer.parseInt(request.getParameter("id"));
-        }catch (Exception e) {
+        } catch (Exception e) {
             response.sendRedirect("/ingresso/list?msg=Id invalido");
             e.printStackTrace();
         }
-
 
         Promocao promocao = PromocaoDAO.get(id);
         if (promocao == null) {
@@ -34,7 +34,6 @@ public class DeleteServlet extends HttpServlet {
             return;
 
         }
-
 
         PromocaoDAO.delete(promocao);
         response.sendRedirect("/ingresso/list?msg=Deletado com Sucesso");

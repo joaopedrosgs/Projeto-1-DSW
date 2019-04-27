@@ -9,6 +9,7 @@ import java.io.IOException;
 
 @WebFilter(filterName = "NotLoggedInFilter", urlPatterns = {"/usuario/login", "/usuario/create"})
 public class NotLoggedInFilter implements Filter {
+
     public void destroy() {
     }
 
@@ -26,8 +27,8 @@ public class NotLoggedInFilter implements Filter {
 
         chain.doFilter(req, resp);
 
-
     }
+
     public void init(FilterConfig config) throws ServletException {
 
     }

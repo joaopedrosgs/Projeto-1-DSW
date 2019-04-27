@@ -11,6 +11,7 @@ import java.io.IOException;
 
 @WebFilter(filterName = "AdminFilter", urlPatterns = {"/site/update", "/site/list", "/site/delete"})
 public class AdminFilter implements Filter {
+
     public void destroy() {
     }
 
@@ -28,7 +29,6 @@ public class AdminFilter implements Filter {
             return;
         }
         chain.doFilter(req, resp);
-
 
     }
 

@@ -11,6 +11,7 @@ import java.io.IOException;
 
 @WebServlet(name = "SiteListDeVendas", urlPatterns = {"/site/list"})
 public class ListServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("sites", SiteVendasDAO.getAll());
         request.getRequestDispatcher("/view/sites.jsp").forward(request, response);

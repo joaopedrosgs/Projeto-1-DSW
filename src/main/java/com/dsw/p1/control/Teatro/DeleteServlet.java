@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "TeatroDeleteServlet", urlPatterns = "/teatro/delete")
 public class DeleteServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO: Redirecionamento para os casos de erro
         HttpSession session = request.getSession();
@@ -36,8 +37,6 @@ public class DeleteServlet extends HttpServlet {
         TeatroDAO.delete(teatro);
         response.sendRedirect("/teatro/list?msg=Acao bem sucedida");
 
-
     }
 
 }
-

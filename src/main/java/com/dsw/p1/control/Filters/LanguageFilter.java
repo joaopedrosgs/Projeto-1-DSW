@@ -8,6 +8,7 @@ import java.io.IOException;
 
 @WebFilter(filterName = "LanguageFilter", urlPatterns = "*")
 public class LanguageFilter implements Filter {
+
     public void destroy() {
     }
 
