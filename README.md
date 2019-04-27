@@ -1,5 +1,12 @@
 # Projeto para disciplina de Desenvolvimento de Software para Web
 
+## Instruções
+
+- Clonar o repositorio
+- Copiar o arquivo database/projeto-1-dsw.sqlite para sua Home
+- Configurar o Tomcat
+- Rodar usando Netbeans
+
 ## Descrição
 
 Sistema para criação de promoções em sites de venda de ingressos
