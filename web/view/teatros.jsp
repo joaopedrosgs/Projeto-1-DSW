@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="i18n"/>
 
 
 <html>
@@ -15,7 +19,7 @@
             <div class=" hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title">
-                        Teatros
+                        <fmt:message key="teatros.teatros"/>
                     </h1>
 
 
@@ -31,8 +35,12 @@
                             <form method="post">
                                 <select name='cidade' onchange='if(this.value != 0) { this.form.submit(); }'>
                                     <jsp:useBean id="cidades" scope="request" type="java.util.List<java.lang.String>"/>
-                                    <option value="" disabled selected>Selecione uma cidade</option>
-                                    <option>Todas</option>
+                                    <option value="" disabled selected>
+                                        <fmt:message key="teatros.selecione_uma_cidade"/>
+                                    </option>
+                                    <option>
+                                        <fmt:message key="teatros.todas"/>
+                                    </option>
                                     <c:forEach var="cidade" items="${cidades}">
                                         <option>${cidade}</option>
                                     </c:forEach>
@@ -43,10 +51,14 @@
                     <c:if test="${sessionScope.user_id != null}">
 
                     <div class="control">
-                        <a href="/teatro/update" class="button is-primary"><span>Criar novo teatro</span> <span
-                                class="icon is-small">
-      <i class="fas fa-plus"></i>
-    </span></a>
+                        <a href="/teatro/update" class="button is-primary">
+                            <span>
+                                <fmt:message key="teatros.criar_novo_teatro"/>
+                            </span>
+                            <span class="icon is-small">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                        </a>
                     </div>
                     </c:if>
                 </div>

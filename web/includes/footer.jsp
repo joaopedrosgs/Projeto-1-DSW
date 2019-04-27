@@ -3,9 +3,11 @@
 <footer class="footer">
     <div class="content has-text-centered">
         <p>
-            <strong>Promoções de ingressos</strong>
+            <strong>
+            	<fmt:message key="footer.promocoes_de_ingressos"/>
+            </strong>
         </p>
-        Trabalho 1 da disciplina de Desenvolvimento de Software para Web
+        <fmt:message key="footer.trabalho1"/>
     </div>
 </footer>
 <script src="/js/loja.js"></script>

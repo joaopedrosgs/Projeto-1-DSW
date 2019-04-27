@@ -20,7 +20,7 @@
                             <i class="fas fa-home"></i>
                         </span>
                         <span>
-                            Inicio
+                            <fmt:message key="navbar.inicio"/>
                         </span>
                     </a>
                     <a class="navbar-item" href="/ingresso/list">
@@ -28,7 +28,7 @@
                             <i class="fas fa-ticket-alt"></i>
                         </span>
                         <span>
-                            Ingressos
+                            <fmt:message key="navbar.ingressos"/>
                         </span>
                     </a>
                     <a class="navbar-item" href="/teatro/list">
@@ -36,7 +36,7 @@
                             <i class="fas fa-theater-masks"></i>
                         </span>
                         <span>
-                            Teatros
+                            <fmt:message key="navbar.teatros"/>
                         </span>
                     </a>
                     <c:if test="${sessionScope.is_admin != null && sessionScope.is_admin == true}">
@@ -46,7 +46,7 @@
                             <i class="fas fa-globe"></i>
                         </span>
                         <span>
-                            Sites
+                            <fmt:message key="navbar.sites"/>
                         </span>
                     </a>
                     </c:if>
@@ -57,7 +57,7 @@
                                     <i class="fas fa-sign-in-alt"></i>
                                 </span>
                                 <span>
-                                    Login
+                                    <fmt:message key="navbar.login"/>
                                 </span>
                             </a>
                         </c:when>
@@ -67,7 +67,8 @@
                                     <span class="tag">
                                         <c:out value="${sessionScope.user_email}" />
                                     </span>
-                                    <a href="/teatro/show" class="tag is-info">Meu teatro
+                                    <a href="/teatro/show" class="tag is-info">
+                                        <fmt:message key="navbar.meu_teatro"/>
                                     </a>
                                 </div>
 
@@ -77,7 +78,7 @@
                                     <i class="fas fa-sign-out-alt"></i>
                                 </span>
                                 <span>
-                                    Logout
+                                    <fmt:message key="navbar.logout"/>
                                 </span>
                             </a>
                         </c:when>
