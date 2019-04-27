@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="i18n"/>
 
 
 <html>
@@ -15,7 +19,7 @@
             <div class=" hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title">
-                        Sites de vendas
+                        <fmt:message key="sites.sites_de_vendas"/>
                     </h1>
 
 
@@ -31,10 +35,14 @@
                     <c:if test="${sessionScope.user_id != null}">
 
                         <div class="control is-fullwidth">
-                            <a href="/site/update" class="button is-primary is-fullwidth"><span>Criar novo site</span> <span
-                                    class="icon is-small">
-      <i class="fas fa-plus"></i>
-    </span></a>
+                            <a href="/site/update" class="button is-primary is-fullwidth">
+                                <span>
+                                    <fmt:message key="sites.criar_novo_site"/>
+                                </span>
+                                <span class="icon is-small">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                            </a>
                         </div>
                     </c:if>
 

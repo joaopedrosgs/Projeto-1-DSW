@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="i18n"/>
 
 <html>
 
@@ -15,7 +18,8 @@
             <div class=" hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title">
-                        Criar/Alterar teatro</h1>
+                        <fmt:message key="alterar_teatro.criar_alterar_teatro"/>
+                    </h1>
                 </div>
             </div>
         </section>
@@ -30,7 +34,7 @@
 
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
-                            <label class="label">Nome</label>
+                            <label class="label"><fmt:message key="alterar_teatro.nome"/></label>
                         </div>
                         <div class="field-body">
                             <div class="field">
@@ -63,7 +67,7 @@
                     </div>
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
-                            <label class="label">Cidade</label>
+                            <label class="label"><fmt:message key="alterar_teatro.cidade"/></label>
                         </div>
                         <div class="field-body">
                             <div class="field">
@@ -78,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="button is-primary is-fullwidth ">Enviar</button>
+                    <button type="submit" class="button is-primary is-fullwidth "><fmt:message key="alterar_teatro.enviar"/></button>
                 </form>
             </div>
         </section>

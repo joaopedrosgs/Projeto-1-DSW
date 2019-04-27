@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="i18n"/>
 
 
 <html>
@@ -15,7 +19,8 @@
         <div class=" hero-body">
             <div class="container has-text-centered">
                 <h1 class="title">
-                    Fazer login </h1>
+                    <fmt:message key="login.fazer_login"/>
+                </h1>
             </div>
         </div>
     </section>
@@ -29,7 +34,9 @@
                     <form method="post" action="/usuario/login">
                         <div class="field is-horizontal">
                             <div class="field-label is-normal">
-                                <label class="label">Usuário</label>
+                                <label class="label">
+                                    <fmt:message key="login.usuario"/>
+                                </label>
                             </div>
                             <div class="field-body">
                                 <div class="field">
@@ -42,7 +49,9 @@
                         </div>
                         <div class="field is-horizontal has-addons">
                             <div class="field-label is-normal">
-                                <label class="label">Senha</label>
+                                <label class="label">
+                                    <fmt:message key="login.senha"/>
+                                </label>
                             </div>
                             <div class="field-body">
                                 <p class="control is-expanded">
@@ -63,7 +72,9 @@
             </div>
         </div>
         <div style="text-align: center">
-            <a href="/usuario/create">Cadastrar</a>
+            <a href="/usuario/create">
+                <fmt:message key="login.cadastrar"/>
+            </a>
         </div>
     </section>
     <%@ include file="../includes/footer.jsp" %>
