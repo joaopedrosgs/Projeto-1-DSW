@@ -6,6 +6,7 @@
 - Copiar o arquivo database/projeto-1-dsw.sqlite para sua Home
 - Configurar o Tomcat
 - Rodar usando Netbeans
+- Utilizar o usuario teste@teste.com/testeteste para logar (ou crie um novo)
 
 ## Descrição
 
