@@ -12,7 +12,9 @@
                 <p class="title">
                     404
                 </p>
-                <div class="tag">Parece que você está tentando acessar uma pagina que não existe</div>
+                <div class="tag">
+                    <fmt:message key="404.message"/>
+                </div>
             </div>
         </div>
     </section>
