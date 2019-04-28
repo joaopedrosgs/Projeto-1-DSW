@@ -4,7 +4,16 @@
     <head>
         <%@ include file="../includes/head.jsp" %>
     </head>
-    <body>
-        <h1 style="text-align:center;" class="title">404</h1>
-    </body>
+
+    <section class="hero is-link is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+               <i class="fas fa-3x fa-bomb"></i>
+                <p class="title">
+                    404
+                </p>
+                <div class="tag">Parece que você está tentando acessar uma pagina que não existe</div>
+            </div>
+        </div>
+    </section>
 </html>
