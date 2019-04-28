@@ -11,4 +11,4 @@
         <fmt:message key="footer.trabalho1"/>
     </div>
 </footer>
-<script src="/js/loja.js"></script>ipt>
+<script src="/js/loja.js"></script>
